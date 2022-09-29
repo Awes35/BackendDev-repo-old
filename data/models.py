@@ -3,6 +3,7 @@ from django.db import models
 
 # Create models here. A model is basically a database layout with additional metadata
 #WHEN DONE UPDATING: python manage.py makemigrations data
+# > will then have to create/synch databases as defined in BackendDev/settings.py
 
 class HighImpactExperiences(models.Model):
     name = models.CharField(max_length=50, primary_key=True)
@@ -47,4 +48,9 @@ class Minors(models.Model):
     subject = models.ForeignKey(Departments, null=True, on_delete=models.SET_NULL)
 
 
-
+class Student(models.Model):
+    student_id = models.IntegerField(default=000000000, primary_key=True)
+    first_name = models.CharField(max_length=50)
+    last_name = models.CharField(max_length=50)
+    major = models.ForeignKey(Majors, null=True, on_delete=models.SET_NULL)
+    minor = models.ForeignKey(Minors, null=True, on_delete=models.SET_NULL)
