@@ -15,7 +15,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from BackendDev import views as main_views
+from data import views as data_views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('admin/', admin.site.urls), #access: localhost:8000/admin/
+    path('', main_views.index, name='index'), #access: localhost:8000/
+    path('files/', main_views.files, name='files'), #access: localhost:8000/files/
+    path('api/', data_views.api, name='api') #access: localhost:8000/api/
+    
 ]

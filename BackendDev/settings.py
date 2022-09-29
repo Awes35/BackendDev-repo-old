@@ -12,6 +12,10 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 from pathlib import Path
 
+from .routers import MasterRouter
+from .routers import ContentRouter
+#BackendDev-repo.
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -31,12 +35,14 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'BackendDev', #to locate the templates 
+    'data.apps.DataConfig', #add the "Data" app
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles',
+    'django.contrib.staticfiles'
 ]
 
 MIDDLEWARE = [
@@ -72,11 +78,21 @@ WSGI_APPLICATION = 'BackendDev.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
+# https://docs.djangoproject.com/en/4.1/topics/testing/advanced/#topics-testing-creation-dependencies
+# https://docs.djangoproject.com/en/4.1/topics/db/multi-db/
 
+# Create & synchronize databases:
+# 1: python manage.py migrate --database=master
+# 2: python manage.py migrate --database=content
 DATABASES = {
-    'default': {
+    'default': {},
+    'master' : {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': BASE_DIR / 'databases' / 'master.sqlite3',
+    },
+    'content': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'databases' / 'content.sqlite3',
     }
 }
 
@@ -99,6 +115,11 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# Database Routing (Multiple Databases)
+# https://docs.djangoproject.com/en/4.1/ref/settings/#std-setting-DATABASE_ROUTERS
+# https://docs.djangoproject.com/en/4.1/topics/db/multi-db/#topics-db-multi-db-routing
+
+DATABASE_ROUTERS = ['BackendDev.routers.MasterRouter', 'BackendDev.routers.ContentRouter']
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
