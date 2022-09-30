@@ -2,7 +2,7 @@ from this import d
 from django.db import models
 
 # Create models here. A model is basically a database layout with additional metadata
-#WHEN DONE UPDATING: python manage.py makemigrations data
+#MUST STAGE MIGRATION: python manage.py makemigrations data
 # > will then have to create/synch databases as defined in BackendDev/settings.py
 
 class HighImpactExperiences(models.Model):
