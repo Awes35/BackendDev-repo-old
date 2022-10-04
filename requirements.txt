@@ -4,6 +4,7 @@ certifi==2022.9.14
 charset-normalizer==2.1.1
 colorama==0.4.5
 Django==4.1.1
+djangorestframework==3.14.0
 idna==3.4
 iniconfig==1.1.1
 joblib==1.1.0
