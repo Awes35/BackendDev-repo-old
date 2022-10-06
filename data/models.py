@@ -29,7 +29,7 @@ class Faculty(models.Model):
 
 
 class Courses(models.Model):
-    CRN = models.IntegerField(default=00000, primary_key=True)
+    crn = models.IntegerField(default=00000, primary_key=True)
     title = models.CharField(max_length=50)
     desc_text = models.CharField(max_length=200)
     course_num = models.IntegerField(default=000)
@@ -48,7 +48,7 @@ class Minors(models.Model):
     subject = models.ForeignKey(Departments, null=True, on_delete=models.SET_NULL)
 
 
-class Student(models.Model):
+class Students(models.Model):
     student_id = models.IntegerField(default=000000000, primary_key=True)
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
