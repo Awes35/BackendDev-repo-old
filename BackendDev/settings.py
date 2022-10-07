@@ -37,6 +37,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'BackendDev', #to locate the templates 
     'data.apps.DataConfig', #add the "Data" app
+    'rest_framework', #Django-rest framework 
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
