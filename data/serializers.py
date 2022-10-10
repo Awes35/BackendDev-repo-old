@@ -10,7 +10,7 @@ from .models import (
     Students
 )
 
-class SerializerHighImpactExperiences(serializers.ModelSerializer):
+class HighImpactExperiencesSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = HighImpactExperiences
@@ -24,7 +24,7 @@ class SerializerHighImpactExperiences(serializers.ModelSerializer):
             "creation_date"
         ]
 
-class SerializerDepartments(serializers.ModelSerializer):
+class DepartmentsSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Departments
@@ -32,7 +32,7 @@ class SerializerDepartments(serializers.ModelSerializer):
             "name"
         ]
 
-class SerializerFaculty(serializers.ModelSerializer):
+class FacultySerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Faculty
@@ -45,7 +45,7 @@ class SerializerFaculty(serializers.ModelSerializer):
             "department"
         ]
 
-class SerializerCourses(serializers.ModelSerializer):
+class CoursesSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Courses
@@ -59,7 +59,7 @@ class SerializerCourses(serializers.ModelSerializer):
             "credit_hours"
         ]
 
-class SerializerMajors(serializers.ModelSerializer):
+class MajorsSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Majors
@@ -68,7 +68,7 @@ class SerializerMajors(serializers.ModelSerializer):
             "subject"
         ]
 
-class SerializerMinors(serializers.ModelSerializer):
+class MinorsSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Minors
@@ -77,7 +77,7 @@ class SerializerMinors(serializers.ModelSerializer):
             "subject"
         ]
 
-class SerializerStudents(serializers.ModelSerializer):
+class StudentsSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Students
