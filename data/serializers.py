@@ -7,7 +7,7 @@ from .models import (
     Courses,
     Majors,
     Minors,
-    Student
+    Students
 )
 
 class SerializerHighImpactExperiences(serializers.ModelSerializer):
