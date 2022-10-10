@@ -16,7 +16,7 @@ class SerializerHighImpactExperiences(serializers.ModelSerializer):
         model = HighImpactExperiences
         fields = [
             "name",
-            "RTX_Name",
+            "RTX_name",
             "Freshman_desc",
             "Sophomore_desc",
             "Junior_desc",
