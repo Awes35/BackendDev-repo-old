@@ -1,4 +1,3 @@
-
 from rest_framework import serializers
 
 from .models import (
@@ -8,7 +7,7 @@ from .models import (
     Courses,
     Majors,
     Minors,
-    Student
+    Students
 )
 
 class SerializerHighImpactExperiences(serializers.ModelSerializer):
@@ -17,7 +16,7 @@ class SerializerHighImpactExperiences(serializers.ModelSerializer):
         model = HighImpactExperiences
         fields = [
             "name",
-            "RTX_Name",
+            "RTX_name",
             "Freshman_desc",
             "Sophomore_desc",
             "Junior_desc",
