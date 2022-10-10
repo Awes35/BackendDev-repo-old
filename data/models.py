@@ -1,4 +1,3 @@
-from this import d
 from django.db import models
 
 # Create models here. A model is basically a database layout with additional metadata
