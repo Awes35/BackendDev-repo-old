@@ -17,6 +17,11 @@ from django.contrib import admin
 from django.urls import path
 from BackendDev import views as main_views
 from data import views as data_views
+from rest_framework import routers
+from views import HIEViewSet
+
+router = routers.DefaultRouter()
+router.register(r'HIEs', HIEViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls), #access: localhost:8000/admin/
