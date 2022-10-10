@@ -20,12 +20,18 @@ from data import views as data_views
 from rest_framework import routers
 
 router = routers.DefaultRouter()
-router.register(r'HIEs', data_views.HIEViewSet)
+router.register(r'HighImpactExperiences', data_views.HighImpactExperiencesViewSet) #access: localhost:8000/api/HighImpactExperiences
+router.register(r'Departments', data_views.DepartmentsViewSet) #access: localhost:8000/api/Departments
+router.register(r'Faculty', data_views.FacultyViewSet) #access: localhost:8000/api/Faculty
+router.register(r'Courses', data_views.CoursesViewSet) #access: localhost:8000/api/Courses
+router.register(r'Majors', data_views.MajorsViewSet) #access: localhost:8000/api/Majors
+router.register(r'Minors', data_views.MinorsViewSet) #access: localhost:8000/api/Minors
+router.register(r'Students', data_views.StudentsViewSet) #access: localhost:8000/api/Students
 
 urlpatterns = [
     path('admin/', admin.site.urls), #access: localhost:8000/admin/
     path('', main_views.index, name='index'), #access: localhost:8000/
     path('files/', main_views.files, name='files'), #access: localhost:8000/files/
     #path('api/', data_views.api, name='api'), #access: localhost:8000/api/
-    path('api/', include(router.urls))
+    path('api/', include(router.urls)) #access: localhost:8000/api/[router.url]
 ]
