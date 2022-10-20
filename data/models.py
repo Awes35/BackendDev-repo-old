@@ -53,3 +53,11 @@ class Students(models.Model):
     last_name = models.CharField(max_length=50)
     major = models.ForeignKey(Majors, null=True, on_delete=models.SET_NULL)
     minor = models.ForeignKey(Minors, null=True, on_delete=models.SET_NULL)
+
+class CalendarEvent(models.Model):
+    name = models.CharField(max_length=100)
+    description = models.CharField(max_length=200)
+    organizer = models.CharField(max_length=100)
+    location = models.CharField(max_length=200)
+    startTime = models.CharField(max_length=100)
+    endTime = models.CharField(max_length=100)
