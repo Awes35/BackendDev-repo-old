@@ -1,54 +1,83 @@
 from rest_framework import serializers
 
 from .models import (
-    HighImpactExperiences,
-    Departments,
-    Faculty,
-    Courses,
-    Majors,
-    Minors,
-    Students
+    Department,
+    Major,
+    Minor,
+    Student,
+    Professor,
+    AdminAssistant,
+    Course,
+    HighImpactExperience
 )
 
-class HighImpactExperiencesSerializer(serializers.ModelSerializer):
+
+class DepartmentSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
-        model = HighImpactExperiences
-        fields = [
-            "name",
-            "RTX_name",
-            "Freshman_desc",
-            "Sophomore_desc",
-            "Junior_desc",
-            "Senior_desc",
-            "creation_date"
-        ]
-
-class DepartmentsSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = Departments
+        model = Department
         fields = [
             "name"
         ]
 
-class FacultySerializer(serializers.ModelSerializer):
+
+class MajorSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
-        model = Faculty
+        model = Major
         fields = [
-            "faculty_id",
-            "first_name",
-            "last_name",
-            "prefix",
-            "suffix",
+            "name",
+            "subject"
+        ]
+
+
+class MinorSerializer(serializers.HyperlinkedModelSerializer):
+
+    class Meta:
+        model = Minor
+        fields = [
+            "name",
+            "subject"
+        ]
+
+
+class StudentSerializer(serializers.HyperlinkedModelSerializer):
+
+    class Meta:
+        model = Student
+        fields = [
+            "user",
+            "major",
+            "minor",
+            "schoolyear"
+        ]
+
+
+class ProfessorSerializer(serializers.HyperlinkedModelSerializer):
+
+    class Meta:
+        model = Professor
+        fields = [
+            "user",
+            "department",
+            "degree_desc"
+        ]
+
+
+class AdminAssistantSerializer(serializers.HyperlinkedModelSerializer):
+
+    class Meta:
+        model = AdminAssistant
+        fields = [
+            "user",
             "department"
         ]
 
-class CoursesSerializer(serializers.ModelSerializer):
+
+class CourseSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
-        model = Courses
+        model = Course
         fields = [
             "crn",
             "title",
@@ -59,32 +88,21 @@ class CoursesSerializer(serializers.ModelSerializer):
             "credit_hours"
         ]
 
-class MajorsSerializer(serializers.ModelSerializer):
+
+class HighImpactExperienceSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
-        model = Majors
+        model = HighImpactExperience
         fields = [
             "name",
-            "subject"
+            "RTX_name",
+            "Freshman_desc",
+            "Sophomore_desc",
+            "Junior_desc",
+            "Senior_desc",
+            "creation_date",
+            "area"
         ]
 
-class MinorsSerializer(serializers.ModelSerializer):
 
-    class Meta:
-        model = Minors
-        fields = [
-            "name",
-            "subject"
-        ]
 
-class StudentsSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = Students
-        fields = [
-            "student_id",
-            "first_name",
-            "last_name",
-            "major",
-            "minor"
-        ]
