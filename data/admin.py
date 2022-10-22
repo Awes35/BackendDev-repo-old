@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import HighImpactExperiences, Departments, Faculty, Courses, Majors, Minors
+#from .models import Profile, Department, Major, Minor, Student, Professor, AdminAssistant, Course, HighImpactExperience
 
 # Register your models here.
-#admin.site.register(HighImpactExperiences)
+#admin.site.register(HighImpactExperience)
