@@ -1,3 +1,4 @@
+from multiprocessing import Event
 from rest_framework import serializers
 
 from .models import (
@@ -8,7 +9,8 @@ from .models import (
     Professor,
     AdminAssistant,
     Course,
-    HighImpactExperience
+    HighImpactExperience,
+    Event
 )
 
 
@@ -105,4 +107,8 @@ class HighImpactExperienceSerializer(serializers.HyperlinkedModelSerializer):
         ]
 
 
+class EventSerializer(serializers.HyperlinkedModelSerializer):
 
+    class Meta:
+        model = Event
+        fields = ["__all__"]

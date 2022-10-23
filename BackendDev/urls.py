@@ -30,6 +30,7 @@ router.register(r'Professors', data_views.ProfessorViewSet)
 router.register(r'AdminAssistants', data_views.AdminAssistantViewSet) 
 router.register(r'Courses', data_views.CourseViewSet) 
 router.register(r'HighImpactExperiences', data_views.HighImpactExperienceViewSet) 
+router.register(r'Events', data_views.EventViewSet)
 
 
 
