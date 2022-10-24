@@ -12,8 +12,8 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 from pathlib import Path
 
-from .routers import MasterRouter
-from .routers import ContentRouter
+# from .routers import MasterRouter
+# from .routers import ContentRouter
 #BackendDev-repo.
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -83,17 +83,11 @@ WSGI_APPLICATION = 'BackendDev.wsgi.application'
 # https://docs.djangoproject.com/en/4.1/topics/db/multi-db/
 
 # Create & synchronize databases:
-# 1: python manage.py migrate --database=master
-# 2: python manage.py migrate --database=content
+# > USE: python manage.py migrate
 DATABASES = {
-    'default': {},
-    'master' : {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'databases' / 'master.sqlite3',
-    },
-    'content': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'databases' / 'content.sqlite3',
+    'default': {
+        'ENGINE' : 'django.db.backends.sqlite3',
+        'NAME' : BASE_DIR / 'databases' / 'db.sqlite3'
     }
 }
 
@@ -102,25 +96,25 @@ DATABASES = {
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
+    # {
+    #     'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+    # },
     {
         'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
     },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
+    # {
+    #     'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+    # },
+    # {
+    #     'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+    # },
 ]
 
 # Database Routing (Multiple Databases)
 # https://docs.djangoproject.com/en/4.1/ref/settings/#std-setting-DATABASE_ROUTERS
 # https://docs.djangoproject.com/en/4.1/topics/db/multi-db/#topics-db-multi-db-routing
 
-DATABASE_ROUTERS = ['BackendDev.routers.MasterRouter', 'BackendDev.routers.ContentRouter']
+#DATABASE_ROUTERS = ['BackendDev.routers.MasterRouter', 'BackendDev.routers.ContentRouter']
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/

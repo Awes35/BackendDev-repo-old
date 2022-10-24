@@ -1,44 +1,64 @@
 from django.http import HttpResponse
 from django.shortcuts import render
-from data.serializers import HighImpactExperiencesSerializer, DepartmentsSerializer, FacultySerializer
-from data.serializers import CoursesSerializer, MajorsSerializer, MinorsSerializer, StudentsSerializer
-from data.models import Courses, Departments, Faculty, HighImpactExperiences, Majors, Minors, Students
+from data.serializers import DepartmentSerializer, MajorSerializer, MinorSerializer
+from data.serializers import StudentSerializer, ProfessorSerializer, AdminAssistantSerializer
+from data.serializers import CourseSerializer, HighImpactExperienceSerializer, EventSerializer
+from data.models import Department, Major, Minor, Student, Professor, AdminAssistant, Course, HighImpactExperience, Event
 from rest_framework import viewsets, permissions
 
 def api(request):
     return HttpResponse("API Home Page")
 
-class HighImpactExperiencesViewSet(viewsets.ModelViewSet):
-    queryset = HighImpactExperiences.objects.all()
-    serializer_class = HighImpactExperiencesSerializer
+
+class DepartmentViewSet(viewsets.ModelViewSet):
+    queryset = Department.objects.all()
+    serializer_class = DepartmentSerializer
     permission_classes = [permissions.AllowAny]
 
-class DepartmentsViewSet(viewsets.ModelViewSet):
-    queryset = Departments.objects.all()
-    serializer_class = DepartmentsSerializer
+
+class MajorViewSet(viewsets.ModelViewSet):
+    queryset = Major.objects.all()
+    serializer_class = MajorSerializer
     permission_classes = [permissions.AllowAny]
 
-class FacultyViewSet(viewsets.ModelViewSet):
-    queryset = Faculty.objects.all()
-    serializer_class = FacultySerializer
+
+class MinorViewSet(viewsets.ModelViewSet):
+    queryset = Minor.objects.all()
+    serializer_class = MinorSerializer
+    permission_classes = [permissions.DjangoModelPermissions]
+
+
+class StudentViewSet(viewsets.ModelViewSet):
+    queryset = Student.objects.all()
+    serializer_class = StudentSerializer
     permission_classes = [permissions.AllowAny]
 
-class CoursesViewSet(viewsets.ModelViewSet):
-    queryset = Courses.objects.all()
-    serializer_class = CoursesSerializer
-    permission_classes = [permissions.AllowAny]
 
-class MajorsViewSet(viewsets.ModelViewSet):
-    queryset = Majors.objects.all()
-    serializer_class = MajorsSerializer
-    permission_classes = [permissions.AllowAny]
+class ProfessorViewSet(viewsets.ModelViewSet):
+    queryset = Professor.objects.all()
+    serializer_class = ProfessorSerializer
+    permission_classes = [permissions.DjangoModelPermissions]
 
-class MinorsViewSet(viewsets.ModelViewSet):
-    queryset = Minors.objects.all()
-    serializer_class = MinorsSerializer
-    permission_classes = [permissions.AllowAny]
 
-class StudentsViewSet(viewsets.ModelViewSet):
-    queryset = Students.objects.all()
-    serializer_class = StudentsSerializer
-    permission_classes = [permissions.AllowAny]
+class AdminAssistantViewSet(viewsets.ModelViewSet):
+    queryset = AdminAssistant.objects.all()
+    serializer_class = AdminAssistantSerializer
+    permission_classes = [permissions.DjangoModelPermissions]
+
+
+class CourseViewSet(viewsets.ModelViewSet):
+    queryset = Course.objects.all()
+    serializer_class = CourseSerializer
+    permission_classes = [permissions.DjangoModelPermissions]
+
+
+class HighImpactExperienceViewSet(viewsets.ModelViewSet):
+    queryset = HighImpactExperience.objects.all()
+    serializer_class = HighImpactExperienceSerializer
+    permission_classes = [permissions.DjangoModelPermissions]
+
+
+class EventViewSet(viewsets.ModelViewSet):
+    queryset = Event.objects.all()
+    serializer_class = EventSerializer
+    permission_classes = [permissions.DjangoModelPermissions] 
