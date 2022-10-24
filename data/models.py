@@ -123,6 +123,15 @@ class Professor(models.Model):
     degree_desc = models.CharField(max_length=100)
 
 
+class CalendarEvent(models.Model):
+    name = models.CharField(max_length=100)
+    description = models.CharField(max_length=200)
+    organizer = models.CharField(max_length=100)
+    location = models.CharField(max_length=200)
+    startTime = models.CharField(max_length=100)
+    endTime = models.CharField(max_length=100)
+
+
 class AdminAssistant(models.Model):
     user = models.ForeignKey(
         Profile,
@@ -192,3 +201,4 @@ class Event(models.Model):
     organizer = models.CharField(max_length=50)
     summary = models.CharField(max_length=50)
     description = models.CharField(max_length=1000)
+
