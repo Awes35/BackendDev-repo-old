@@ -177,3 +177,18 @@ class HighImpactExperience(models.Model):
         on_delete=models.SET_NULL,
         related_name='hie_depts' #h1.hie_depts.all() - all Department obj rel. to HighImpactExperience
     )
+
+
+class Event(models.Model):
+    id = models.CharField(max_length=7, primary_key=True) # can get this from the url
+    name = models.CharField(max_length=50)
+    start_time = models.DateTimeField()
+    end_time = models.DateTimeField()
+    creation_time = models.DateTimeField()
+    modified_time = models.DateTimeField()
+    url = models.CharField(max_length=100)
+    location = models.CharField(max_length=100)
+    categories = models.CharField(max_length=100) # event_type and event_tags
+    organizer = models.CharField(max_length=50)
+    summary = models.CharField(max_length=50)
+    description = models.CharField(max_length=1000)
