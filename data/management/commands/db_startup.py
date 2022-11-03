@@ -46,3 +46,19 @@ u = User.objects.get(username='gosborn')
 d = Department.objects.get(name='Psychology')
 Profile.objects.create(user=u, department=d)
 
+#shell: python manage.py shell
+
+
+# create a HIE entry (row)
+from data.models import HighImpactExperience
+HighImpactExperience.objects.create(name='Immersive and Service Learning Courses', RTX_name='Immersive Learning')
+hie = HighImpactExperience.objects.get(name='Immersive and Service Learning Courses')
+hie.Freshman_desc = 'Watch reflections of Xavier students who have participated in immersive and service learning academic experiences.Use an Advanced Search in Self Service to explore Immersive and Service Learning Attributed Courses during registration.'
+hie.Sophomore_desc = 'Use an Advanced Search in Self Service to explore Immersive and Service Learning Attributed Courses during registration. ILE and SERL courses are available in the Core, as electives, and within many majors'
+hie.Junior_desc = 'Use an Advanced Search in Self Service to explore Immersive and Service Learning Attributed Courses during registration. ILE and SERL courses are available in the Core, as electives, and within many majors'
+hie.Senior_desc = 'Many ILE and SERL Attributed Courses are integrated into Capstone and Community Engaged Research experiences in your major. Ask your advisor, or use an Advanced Search to explore these integrated experiences.'
+hie.save()
+
+
+
+

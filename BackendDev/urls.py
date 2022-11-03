@@ -37,6 +37,9 @@ router.register(r'Events', data_views.EventViewSet)
 urlpatterns = [
     path('admin/', admin.site.urls), #access: localhost:8000/admin/
     path('', main_views.index, name='index'), #access: localhost:8000/
+    path('HIEs-display/', main_views.HIEs_display, name='HIE-display'),
+    path('HIEs-raw/', main_views.HIEs_raw, name='HIE-raw'),
+
     path('files/', main_views.files, name='files'), #access: localhost:8000/files/
     path('login/', main_views.auth, name='auth'),
     #path('api/', data_views.api, name='api'), #access: localhost:8000/api/

@@ -158,7 +158,7 @@ class Course(models.Model):
         blank=True, #field allowed to be blank
         on_delete=models.SET_NULL, #course could be without an instructor
         related_name='crs_profs' #c1.crs_profs.all() - all Professor obj rel. to Course
-    )
+    ) 
     credit_hours = models.IntegerField(null=False, blank=False)
 
 
@@ -169,14 +169,15 @@ class HighImpactExperience(models.Model):
     Sophomore_desc = models.CharField(max_length=200)
     Junior_desc = models.CharField(max_length=200)
     Senior_desc = models.CharField(max_length=200)
-    creation_date = models.DateTimeField('date created')
-    area = models.ForeignKey(
-        Department,
-        null=True, #DB can store empty field as NULL
-        blank=True, #field allowed to be blank
-        on_delete=models.SET_NULL,
-        related_name='hie_depts' #h1.hie_depts.all() - all Department obj rel. to HighImpactExperience
-    )
+    creation_date = models.DateTimeField('date created', auto_now_add=True)
+
+    # area = models.ForeignKey(
+    #     Department,
+    #     null=True, #DB can store empty field as NULL
+    #     blank=True, #field allowed to be blank
+    #     on_delete=models.SET_NULL,
+    #     related_name='hie_depts' #h1.hie_depts.all() - all Department obj rel. to HighImpactExperience
+    # )
 
 
 class Event(models.Model):
