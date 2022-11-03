@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    <title>{% block title %}HIE Listings{% endblock %}</title>
+</head>
+
+<body>
+    <div id="sidebar">
+        {% block sidebar %}
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/login/">Login</a></li>
+            <li><a href="/api/">API</a></li>
+        </ul>
+        {% endblock %}
+    </div>
+
+    <div id="content">
+        {% block content %}
+        <h1>High-Impact Experiences</h1> 
+
+        {% for hie in hie_entries %}
+            <h3>> {{ hie.name }}</h3>
+            <p><b>Freshman: </b> {{ hie.Freshman_desc }}</p>
+            <p><b>Sophomore: </b> {{ hie.Sophomore_desc }}</p>
+            <p><b>Junior: </b> {{ hie.Junior_desc }}</p>
+            <p><b>Senior: </b> {{ hie.Senior_desc }}</p>
+            <p><i>created: </i> {{ hie.creation_date }}</p>
+        {% endfor %}
+
+        {% endblock %}
+    </div>
+</body>
+</html>
