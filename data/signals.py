@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.dispatch import receiver
 from .models import Profile
 
+#NOT USING SIGNALS CURRENTLY -- MAY REMOVE FILE IN FUTURE
 
 # create Profile table entry when new auth_User table entry created
 # @receiver(post_save, sender=User)
