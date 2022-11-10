@@ -74,7 +74,7 @@ class Student(models.Model):
         (SENIOR, 'Senior'),
         (GRADUATE, 'Graduate')
     ]
-    user = models.ForeignKey(
+    prof = models.ForeignKey(
         Profile, 
         null=False, #DB cant store field as NULL
         blank=False, #field not allowed to be blank
@@ -171,13 +171,13 @@ class HighImpactExperience(models.Model):
     Senior_desc = models.CharField(max_length=200)
     creation_date = models.DateTimeField('date created', auto_now_add=True)
 
-    # area = models.ForeignKey(
-    #     Department,
-    #     null=True, #DB can store empty field as NULL
-    #     blank=True, #field allowed to be blank
-    #     on_delete=models.SET_NULL,
-    #     related_name='hie_depts' #h1.hie_depts.all() - all Department obj rel. to HighImpactExperience
-    # )
+    area = models.ForeignKey(
+        Department,
+        null=True, #DB can store empty field as NULL
+        blank=True, #field allowed to be blank
+        on_delete=models.SET_NULL,
+        related_name='hie_depts' #h1.hie_depts.all() - all Department obj rel. to HighImpactExperience
+    )
 
 
 class Event(models.Model):
