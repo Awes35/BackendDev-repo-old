@@ -106,7 +106,7 @@ class Student(models.Model):
 
 class Professor(models.Model):
     # prof_id = models.IntegerField(default=000000000, primary_key=True)
-    user = models.ForeignKey(
+    prof = models.ForeignKey(
         Profile, 
         null=False, #DB cant store field as NULL
         blank=False, #field not allowed to be blank
@@ -124,7 +124,7 @@ class Professor(models.Model):
 
 
 class AdminAssistant(models.Model):
-    user = models.ForeignKey(
+    prof = models.ForeignKey(
         Profile,
         null=False, #DB cant store field as NULL
         blank=False, #field not allowed to be blank
