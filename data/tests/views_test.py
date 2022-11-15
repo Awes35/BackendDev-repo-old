@@ -111,7 +111,7 @@ class TestDepartmentViewSet:
 class TestMajorViewSet():
     def testGetOnNothing(self):
         try:
-            req = requests.get("http://127.0.0.1:8000/api/Major/")
+            req = requests.get("http://127.0.0.1:8000/api/Majors/")
             assert req.text == "[]"
         except Exception as e:
             if req.status_code != requests.codes.ok:
@@ -120,9 +120,9 @@ class TestMajorViewSet():
     
     def testPostOnNothing(self):
         try:
-            req = requests.post("http://127.0.0.1:8000/api/Major/", data = {"name":"Test Major 1","subject":"Test Subject 1"})
-            getReq = requests.get("http://127.0.0.1:8000/api/Major/1/")
-            assert getReq.text == "{\"name\":\"Test Major 1\",\"subject\":\"Test Subject 1\"}"
+            createDeptReq = requests.post("http://127.0.0.1:8000/api/Departments/", data = {"name":"Test Department 1"})            req = requests.post("http://127.0.0.1:8000/api/Majors/", data = {"name":"Test Major 1","subject":"http://127.0.0.1:8000/api/Departments/1/"})
+            getReq = requests.get("http://127.0.0.1:8000/api/Majors/1/")
+            assert getReq.text == "{\"name\":\"Test Major 1\",\"subject\":\"http://127.0.0.1:8000/api/Departments/1/\"}"
         except Exception as e:
             if req.status_code != requests.codes.ok:
                 pytest.fail("Request failed with code " + str(req.status_code))
@@ -130,8 +130,8 @@ class TestMajorViewSet():
 
     def testGetOnElement(self):
         try:
-            req = requests.get("http://127.0.0.1:8000/api/Major/1/")
-            assert req.text == "{\"name\":\"Test Major 1\",\"subject\":\"Test Subject 1\"}"
+            req = requests.get("http://127.0.0.1:8000/api/Majors/1/")
+            assert req.text == "{\"name\":\"Test Major 1\",\"subject\":\"http://127.0.0.1:8000/api/Departments/1/\"}"
         except Exception as e:
             if req.status_code != requests.codes.ok:
                 pytest.fail("Request failed with code " + str(req.status_code))
@@ -139,9 +139,9 @@ class TestMajorViewSet():
 
     def testPut(self):
         try:
-            req = requests.put("http://127.0.0.1:8000/api/Major/1/", data = {"name":"Test Department 2"})
-            getReq = requests.get("http://127.0.0.1:8000/api/Major/1/")
-            assert getReq.text == "{\"name\":\"Test Department 2\"}"
+            req = requests.put("http://127.0.0.1:8000/api/Majors/1/", data = {"name":"Test Major 2", "subject":"http://127.0.0.1:8000/api/Departments/1/"})
+            getReq = requests.get("http://127.0.0.1:8000/api/Majors/1/")
+            assert getReq.text == "{\"name\":\"Test Major 2\",\"subject\":\"http://127.0.0.1:8000/api/Departments/1/\"}"
         except Exception as e:
             if req.status_code != requests.codes.ok:
                 pytest.fail("Request failed with code " + str(req.status_code))
@@ -149,8 +149,8 @@ class TestMajorViewSet():
 
     def testGetOnElementAfterPut(self):
         try:
-            req = requests.get("http://127.0.0.1:8000/api/Major/1/")
-            assert req.text == "{\"name\":\"Test Department 2\"}"
+            req = requests.get("http://127.0.0.1:8000/api/Majors/1/")
+            assert req.text == "{\"name\":\"Test Major 2\",\"subject\":\"http://127.0.0.1:8000/api/Departments/1/\"}"
         except Exception as e:
             if req.status_code != requests.codes.ok:
                 pytest.fail("Request failed with code " + str(req.status_code))
@@ -158,9 +158,9 @@ class TestMajorViewSet():
 
     def testPatch(self):
         try:
-            req = requests.patch("http://127.0.0.1:8000/api/Major/1/", data = {"name":"Test Department 3"})
-            getReq = requests.get("http://127.0.0.1:8000/api/Major/1/")
-            assert getReq.text == "{\"name\":\"Test Department 3\"}"
+            req = requests.patch("http://127.0.0.1:8000/api/Majors/1/", data = {"name":"Test Major 1"})
+            getReq = requests.get("http://127.0.0.1:8000/api/Majors/1/")
+            assert getReq.text == "{\"name\":\"Test Major 1\",\"subject\":\"http://127.0.0.1:8000/api/Departments/1/\"}"
         except Exception as e:
             if req.status_code != requests.codes.ok:
                 pytest.fail("Request failed with code " + str(req.status_code))
@@ -168,8 +168,8 @@ class TestMajorViewSet():
     
     def testGetOnElementAfterPatch(self):
         try:
-            req = requests.get("http://127.0.0.1:8000/api/Major/1/")
-            assert req.text == "{\"name\":\"Test Department 3\"}"
+            req = requests.get("http://127.0.0.1:8000/api/Majors/1/")
+            assert req.text == "{\"name\":\"Test Major 1\",\"subject\":\"http://127.0.0.1:8000/api/Departments/1/\"}"
         except Exception as e:
             if req.status_code != requests.codes.ok:
                 pytest.fail("Request failed with code " + str(req.status_code))
@@ -177,9 +177,9 @@ class TestMajorViewSet():
 
     def testPost(self):
         try:
-            req = requests.post("http://127.0.0.1:8000/api/Major/", data = {"name":"Test Department 2"})
-            getReq = requests.get("http://127.0.0.1:8000/api/Major/2/")
-            assert getReq.text == "{\"name\":\"Test Department 2\"}"
+            req = requests.post("http://127.0.0.1:8000/api/Majors/", data = {"name":"Test Major 2", "subject":"http://127.0.0.1:8000/api/Departments/1/"})
+            getReq = requests.get("http://127.0.0.1:8000/api/Majors/2/")
+            assert getReq.text == "{\"name\":\"Test Department 2\",\"subject\":\"http://127.0.0.1:8000/api/Departments/1/\"}"
         except Exception as e:
             if req.status_code != requests.codes.ok:
                 pytest.fail("Request failed with code " + str(req.status_code))
@@ -187,8 +187,8 @@ class TestMajorViewSet():
 
     def testGetOnAllElements(self):
         try:
-            req = requests.get("http://127.0.0.1:8000/api/Major/")
-            assert req.text == "[{\"name\":\"Test Department 3\"},{\"name\":\"Test Department 2\"}]"
+            req = requests.get("http://127.0.0.1:8000/api/Majors/")
+            assert req.text == "[{\"name\":\"Test Department 1\",\"subject\":\"http://127.0.0.1:8000/api/Departments/1/\"},{\"name\":\"Test Department 2\",\"subject\":\"http://127.0.0.1:8000/api/Departments/1/\"}]"
         except Exception as e:
             if req.status_code != requests.codes.ok:
                 pytest.fail("Request failed with code " + str(req.status_code))
@@ -196,8 +196,8 @@ class TestMajorViewSet():
 
     def testDelete(self):
         try:
-            req = requests.delete("http://127.0.0.1:8000/api/Major/1/")
-            getReq = requests.get("http://127.0.0.1:8000/api/Major/1/")
+            req = requests.delete("http://127.0.0.1:8000/api/Majors/1/")
+            getReq = requests.get("http://127.0.0.1:8000/api/Majors/1/")
             assert getReq.text == "{\"detail\":\"Not found.\"}"
         except Exception as e:
             if req.status_code != requests.codes.ok:
@@ -206,8 +206,8 @@ class TestMajorViewSet():
 
     def testGetOnAllElementsAfterDeleting(self):
         try:
-            req = requests.get("http://127.0.0.1:8000/api/Major/")
-            assert req.text == "[{\"name\":\"Test Department 2\"}]"
+            req = requests.get("http://127.0.0.1:8000/api/Majors/")
+            assert req.text == "[{\"name\":\"Test Department 2\",\"subject\":\"http://127.0.0.1:8000/api/Departments/1/\"}]"
         except Exception as e:
             if req.status_code != requests.codes.ok:
                 pytest.fail("Request failed with code " + str(req.status_code))
