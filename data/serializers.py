@@ -104,9 +104,9 @@ class HighImpactExperienceSerializer(serializers.ModelSerializer):
             "Sophomore_desc",
             "Junior_desc",
             "Senior_desc",
-            "creation_date"
-            # ,
-            # "area"
+            "creation_date",
+            "area",
+            "advisor"
         ]
 
 

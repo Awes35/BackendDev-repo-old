@@ -178,6 +178,12 @@ class HighImpactExperience(models.Model):
         on_delete=models.SET_NULL,
         related_name='hie_depts' #h1.hie_depts.all() - all Department obj rel. to HighImpactExperience
     )
+    advisor = models.ForeignKey(
+        Profile,
+        null=True,
+        blank=True,
+        on_delete=models.CASCADE,
+        related_name="experience_advisor")
 
 
 class Event(models.Model):
@@ -193,4 +199,11 @@ class Event(models.Model):
     organizer = models.CharField(max_length=50)
     summary = models.CharField(max_length=50)
     description = models.CharField(max_length=1000)
+    experience = models.ForeignKey(
+        HighImpactExperience,
+        null=False,
+        blank=False,
+        on_delete=models.CASCADE,
+        related_name="event_experience"
+    )
 
