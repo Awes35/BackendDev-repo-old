@@ -103,7 +103,8 @@ class HighImpactExperienceSerializer(serializers.HyperlinkedModelSerializer):
             "Junior_desc",
             "Senior_desc",
             "creation_date",
-            "area"
+            "area",
+            "advisor"
         ]
 
 
