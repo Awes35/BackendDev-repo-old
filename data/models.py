@@ -74,7 +74,7 @@ class Student(models.Model):
         (SENIOR, 'Senior'),
         (GRADUATE, 'Graduate')
     ]
-    user = models.ForeignKey(
+    prof = models.ForeignKey(
         Profile, 
         null=False, #DB cant store field as NULL
         blank=False, #field not allowed to be blank
@@ -106,7 +106,7 @@ class Student(models.Model):
 
 class Professor(models.Model):
     # prof_id = models.IntegerField(default=000000000, primary_key=True)
-    user = models.ForeignKey(
+    prof = models.ForeignKey(
         Profile, 
         null=False, #DB cant store field as NULL
         blank=False, #field not allowed to be blank
@@ -124,7 +124,7 @@ class Professor(models.Model):
 
 
 class AdminAssistant(models.Model):
-    user = models.ForeignKey(
+    prof = models.ForeignKey(
         Profile,
         null=False, #DB cant store field as NULL
         blank=False, #field not allowed to be blank
@@ -158,7 +158,7 @@ class Course(models.Model):
         blank=True, #field allowed to be blank
         on_delete=models.SET_NULL, #course could be without an instructor
         related_name='crs_profs' #c1.crs_profs.all() - all Professor obj rel. to Course
-    )
+    ) 
     credit_hours = models.IntegerField(null=False, blank=False)
 
 
@@ -169,7 +169,8 @@ class HighImpactExperience(models.Model):
     Sophomore_desc = models.CharField(max_length=200)
     Junior_desc = models.CharField(max_length=200)
     Senior_desc = models.CharField(max_length=200)
-    creation_date = models.DateTimeField('date created')
+    creation_date = models.DateTimeField('date created', auto_now_add=True)
+
     area = models.ForeignKey(
         Department,
         null=True, #DB can store empty field as NULL

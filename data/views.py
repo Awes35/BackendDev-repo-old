@@ -9,6 +9,15 @@ from rest_framework import viewsets, permissions
 def api(request):
     return HttpResponse("API Home Page")
 
+class StudentViewSet(viewsets.ViewSet):
+    queryset = Student.objects.all()
+    serializer_class = StudentSerializer
+    permission_classes = [permissions.DjangoModelPermissions]
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
+
+
 
 class DepartmentViewSet(viewsets.ModelViewSet):
     queryset = Department.objects.all()

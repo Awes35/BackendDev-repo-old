@@ -44,7 +44,9 @@ class MinorSerializer(serializers.HyperlinkedModelSerializer):
 
 
 class StudentSerializer(serializers.HyperlinkedModelSerializer):
-
+    owner = serializers.ReadOnlyField(source='user.username')
+    #could be CharField(read_only=True)
+    #DOES USER NEED A SERIALIZER WITH username ??
     class Meta:
         model = Student
         fields = [
@@ -91,7 +93,7 @@ class CourseSerializer(serializers.HyperlinkedModelSerializer):
         ]
 
 
-class HighImpactExperienceSerializer(serializers.HyperlinkedModelSerializer):
+class HighImpactExperienceSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = HighImpactExperience
