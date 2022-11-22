@@ -182,11 +182,12 @@ class HighImpactExperience(models.Model): #AdminAssistant or Professor will crea
         related_name='hie_depts' #h1.hie_depts.all() - all Department obj rel. to HighImpactExperience
     )
     advisor = models.ForeignKey(
-        Profile,
+        Professor,
         null=True,
         blank=True,
-        on_delete=models.CASCADE,
-        related_name="experience_advisor")
+        on_delete=models.SET_NULL,
+        related_name='hie_professor'
+    )
 
 
 class Event(models.Model):
