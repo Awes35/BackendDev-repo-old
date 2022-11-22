@@ -53,7 +53,8 @@ class MinorSerializer(serializers.ModelSerializer):
 
 class HighImpactExperienceSerializer(serializers.ModelSerializer):
     area = serializers.SlugRelatedField(slug_field='name', queryset=Department.objects.all())
-
+    advisor = serializers.SlugRelatedField(slug_field='username', queryset=Professor.objects.all()) #?? WIP
+    
     class Meta:
         model = HighImpactExperience
         fields = [
@@ -201,7 +202,7 @@ class AdminAssistantSerializer(serializers.ModelSerializer):
 
 class CourseSerializer(serializers.ModelSerializer):
     subject = serializers.SlugRelatedField(slug_field='name', queryset=Department.objects.all())
-    instructor = serializers.SlugRelatedField(slug_field='name', queryset=Professor.objects.all())
+    instructor = serializers.SlugRelatedField(slug_field='name', queryset=Professor.objects.all()) #?? WIP
     
     class Meta:
         model = Course
