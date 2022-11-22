@@ -64,7 +64,8 @@ class HighImpactExperienceSerializer(serializers.ModelSerializer):
             "Junior_desc",
             "Senior_desc",
             "creation_date",
-            "area"
+            "area",
+            "advisor"
         ]
 
 
@@ -213,4 +214,3 @@ class CourseSerializer(serializers.ModelSerializer):
             "instructor",
             "credit_hours"
         ]
-
