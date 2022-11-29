@@ -30,7 +30,7 @@ class Command(BaseCommand):
     def handle(self, *args, **kwargs):
         try:
             #create superuser
-            su = User.objects.create_superuser(username="backend", password="xu261backend_su")
+            su = User.objects.create_superuser(username="superuser", password="xu261backend_su")
 
             #CREATE GROUPS
             # https://testdriven.io/blog/django-permissions/
