@@ -30,7 +30,7 @@ class Command(BaseCommand):
     def handle(self, *args, **kwargs):
         try:
             #create superuser
-            su = User.objects.create_superuser(username="backend", password="xu261backend_su")
+            su = User.objects.create_superuser(username="superuser", password="xu261backend_su")
 
             #CREATE GROUPS
             # https://testdriven.io/blog/django-permissions/
@@ -177,7 +177,7 @@ class Command(BaseCommand):
                     prof_group.permissions.add(perm)
             
 
-            #INITIALIZE DEPARTMENTS TABLE
+            #INITIALIZE DEPARTMENTS TABLE WITH SOME SAMPLE DATA
             d = Department.objects.create(name='Mathematics')
             Department.objects.create(name='Biology')
             Department.objects.create(name='Psychology')
@@ -185,7 +185,7 @@ class Command(BaseCommand):
             d2 = Department.objects.create(name='Art')
             d3 = Department.objects.create(name='Business')
 
-            #INITIALIZE MAJOR, MINOR TABLES
+            #INITIALIZE MAJOR, MINOR TABLES WITH SOME SAMPLE DATA
             Major.objects.create(name='BS in Computer Science', subject=d1)
             Major.objects.create(name='BA in Computer Science', subject=d1)
             Major.objects.create(name='Fine Arts', subject=d2)
@@ -202,7 +202,7 @@ class Command(BaseCommand):
             Minor.objects.create(name='Cybersecurity', subject=d1)
             Minor.objects.create(name='Finance', subject=d3)
 
-            #CREATE NEW HighImpactExperience ENTRY
+            #CREATE NEW HighImpactExperience ENTRY (SAMPLE DATA)
             hie = HighImpactExperience.objects.create(name='Immersive and Service Learning Courses', RTX_name='Immersive Learning')
             hie.Freshman_desc = 'Watch reflections of Xavier students who have participated in immersive and service learning academic experiences.Use an Advanced Search in Self Service to explore Immersive and Service Learning Attributed Courses during registration.'
             hie.Sophomore_desc = 'Use an Advanced Search in Self Service to explore Immersive and Service Learning Attributed Courses during registration. ILE and SERL courses are available in the Core, as electives, and within many majors'
@@ -210,14 +210,14 @@ class Command(BaseCommand):
             hie.Senior_desc = 'Many ILE and SERL Attributed Courses are integrated into Capstone and Community Engaged Research experiences in your major. Ask your advisor, or use an Advanced Search to explore these integrated experiences.'
             hie.save()
 
-            #-create Professor
+            #-create SAMPLE Professor user
             u = User.objects.create_user(username='mikeyg', last_name='Goldweber', email='goldweber@xavier.edu', first_name='Michael', password="mikey_scotch")
             u.groups.add(prof_group)
             p = Profile.objects.create(user=u, prefix='Dr.', role=Profile.PROFESSOR)
             dept=Department.objects.get(name="Computer Science")
             Professor.objects.create(prof=p, department=dept, degree_desc="PhD in Computer Science, University of Michigan 1969")
 
-            #-create AdminAssistant
+            #-create SAMPLE AdminAssistant user
             u = User.objects.create_user(username='donnaw', last_name='Wallace', email='wallace@xavier.edu', first_name='Donna', password="donna_pw")
             u.groups.add(aa_group)
             p = Profile.objects.create(user=u, role=Profile.ADMINASSISTANT)
