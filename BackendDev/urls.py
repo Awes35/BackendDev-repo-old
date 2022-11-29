@@ -20,27 +20,18 @@ from data import views as data_views
 from rest_framework import routers
 
 
-# router = routers.DefaultRouter()
-# #access registered ViewSets: localhost:8000/api/[NAME]
-# router.register(r'Departments', data_views.DepartmentViewSet) 
-# router.register(r'Majors', data_views.MajorViewSet)
-# router.register(r'Minors', data_views.MinorViewSet) 
-# router.register(r'Students', data_views.StudentViewSet) 
-# router.register(r'Professors', data_views.ProfessorViewSet) 
-# router.register(r'AdminAssistants', data_views.AdminAssistantViewSet) 
-# router.register(r'Courses', data_views.CourseViewSet) 
-# router.register(r'HighImpactExperiences', data_views.HighImpactExperienceViewSet) 
-# router.register(r'Events', data_views.EventViewSet)
+router = routers.DefaultRouter()
+#access registered ViewSets: localhost:8000/api/[NAME]
+router.register(r'Departments', data_views.DepartmentViewSet) 
+router.register(r'Major', data_views.MajorViewSet)
+router.register(r'Minor', data_views.MinorViewSet) 
+router.register(r'Courses', data_views.CourseViewSet) 
+router.register(r'HighImpactExperiences', data_views.HighImpactExperienceViewSet) 
+router.register(r'Events', data_views.EventViewSet)
 
 
 # https://stackoverflow.com/questions/53989959/how-to-allow-post-for-update-action-in-django-rest-framework
 
-#post (create) -- requires add
-#put, patch (updates) -- requires change
-#delete (destroy) -- requires delete
-#get (list, retrieve) -- requires view ..(?)
-
-#maybe check perms here -- URL perms?
 student_list = data_views.StudentViewSet.as_view({'get':'list'})
 student_create = data_views.StudentViewSet.as_view({'post':'create'})
 student_specific = data_views.StudentViewSet.as_view({ #pk 
@@ -52,12 +43,22 @@ student_specific = data_views.StudentViewSet.as_view({ #pk
 
 prof_list = data_views.ProfessorViewSet.as_view({'get':'list'})
 prof_create = data_views.ProfessorViewSet.as_view({'post':'create'})
-prof_specific = data_views.ProfessorViewSet.as_view({
+prof_specific = data_views.ProfessorViewSet.as_view({ #pk
     'get':'retrieve',
     'put':'update',
     'patch':'partial_update',
     'delete':'destroy'
 })
+
+aa_list = data_views.AdminAssistantViewSet.as_view({'get':'list'})
+aa_create = data_views.AdminAssistantViewSet.as_view({'post':'create'})
+aa_specific = data_views.AdminAssistantViewSet.as_view({ #pk
+    'get':'retrieve',
+    'put':'update',
+    'patch':'partial_update',
+    'delete':'destroy'
+})
+
 
 urlpatterns = [
     path('admin/', admin.site.urls), #access: localhost:8000/admin/
@@ -65,8 +66,6 @@ urlpatterns = [
     path('HIEs-display/', main_views.HIEs_display, name='HIE-display'),
     path('HIEs-raw/', main_views.HIEs_raw, name='HIE-raw'),
     path('files/', main_views.files, name='files'), #access: localhost:8000/files/
-    path('login/', main_views.auth, name='auth'),
-    # path('api/', include(router.urls)) #access: localhost:8000/api/[router.url]
 
     path('api/', data_views.api, name='api'), #access: localhost:8000/api/
     
@@ -77,5 +76,10 @@ urlpatterns = [
     path('api/Professor/register/', prof_create, name='prof-create'),
     path('api/Professor/list/', prof_list, name='prof-list'),
     path('api/Professor/<int:pk>/', prof_specific, name='prof-specific'),
-    # path()
+
+    path('api/AdminAssistant/register/', aa_create, name='aa-create'),
+    path('api/AdminAssistant/list/', aa_list, name='aa-list'),
+    path('api/AdminAssistant/<int:pk>/', aa_specific, name='aa-specific'),
+    
+    path('api/', include(router.urls)) #access: localhost:8000/api/[router.url]
 ]
