@@ -191,6 +191,7 @@ class Event(models.Model):
     name = models.CharField(max_length=50)
     start_time = models.DateTimeField()
     end_time = models.DateTimeField()
+
     creation_time = models.DateTimeField('date created', auto_now_add=True)
     # modified_time = models.DateTimeField()
     url = models.CharField(max_length=100, blank=True)
