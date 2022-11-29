@@ -83,20 +83,16 @@ class Student(models.Model): #Any can create
         on_delete=models.CASCADE,
         related_name='stud_profiles' #s1.stud_profiles.all() - all Profile obj rel. to Student
     )
-    major = models.ForeignKey(
+    major = models.ManyToManyField(
         Major, 
-        null=True, #DB can store empty field as NULL
         blank=True, #field is allowed to be blank
-        on_delete=models.SET_NULL,
         default=None,
         related_name='stud_majors' #s1.stud_majors.all() - all Major obj rel. to Student
     )
-    minor = models.ForeignKey(
+    minor = models.ManyToManyField(
         Minor, 
-        null=True, #DB can store empty field as NULL
         blank=True, #field is allowed to be blank
         default=None,
-        on_delete=models.SET_NULL,
         related_name='stud_minors' #s1.stud_minors.all() - all Minor obj rel. to Student
     )
     schoolyear = models.CharField(
@@ -123,7 +119,7 @@ class Professor(models.Model): #AdminAssistant will create
         on_delete=models.PROTECT, #can't delete a Department that has Professors assigned to it
         related_name='prof_depts' #p1.prof_depts.all() - all Department obj rel. to Professor
     )
-    degree_desc = models.CharField(max_length=100)
+    degree_desc = models.CharField(max_length=300)
 
 
 class AdminAssistant(models.Model): #Superuser/other AdminAssistant's will create
@@ -144,7 +140,7 @@ class AdminAssistant(models.Model): #Superuser/other AdminAssistant's will creat
 
 
 class Course(models.Model): #AdminAssistant or Professor will create
-    crn = models.PositiveIntegerField(primary_key=True, null=False, blank=False, validators=[MaxValueValidator(99999)])
+    crn = models.PositiveIntegerField(primary_key=True, null=False, blank=False, validators=[MaxValueValidator(99999)]) #-- when update, doesn't delete old entry
     title = models.CharField(max_length=50, null=False, blank=False)
     desc_text = models.CharField(max_length=200, null=False, blank=True)
     course_num = models.IntegerField(default=000, null=False, blank=False)
@@ -191,23 +187,29 @@ class HighImpactExperience(models.Model): #AdminAssistant or Professor will crea
 
 
 class Event(models.Model):
-    id = models.PositiveSmallIntegerField(primary_key=True, validators=[MaxValueValidator(9999999)]) # can get this from the url
+    id = models.PositiveSmallIntegerField(primary_key=True, validators=[MaxValueValidator(9999999)]) #-- when update, doesn't delete old entry
     name = models.CharField(max_length=50)
     start_time = models.DateTimeField()
     end_time = models.DateTimeField()
-    creation_time = models.DateTimeField()
-    modified_time = models.DateTimeField()
-    url = models.CharField(max_length=100)
-    location = models.CharField(max_length=100)
-    categories = models.CharField(max_length=100) # event_type and event_tags
-    organizer = models.CharField(max_length=50)
-    summary = models.CharField(max_length=50)
-    description = models.CharField(max_length=1000)
-    experience = models.ForeignKey(
-        HighImpactExperience,
-        null=False,
+
+    creation_time = models.DateTimeField('date created', auto_now_add=True)
+    # modified_time = models.DateTimeField()
+    url = models.CharField(max_length=100, blank=True)
+    location = models.CharField(max_length=100, blank=True)
+    categories = models.CharField(max_length=100) # event_type and event_tags ??
+    organizer = models.ForeignKey(
+        Profile,
+        null=True,
         blank=False,
+        on_delete=models.SET_NULL,
+        related_name='event_organizer'
+    )
+    description = models.CharField(max_length=500)
+    hie = models.ForeignKey(
+        HighImpactExperience,
+        null=True,
+        blank=True,
         on_delete=models.CASCADE,
-        related_name="event_experience"
+        related_name='event_hie'
     )
 

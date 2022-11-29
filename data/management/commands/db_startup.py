@@ -49,9 +49,10 @@ class Command(BaseCommand):
             content_type = ContentType.objects.get_for_model(Student)
             post_perm = Permission.objects.filter(content_type=content_type)
             print(f"Student Perms:\n{[perm.codename for perm in post_perm]}\n") #-- ['add_student', 'change_student', 'delete_student', 'view_student']
-            #anyone (Students) can create
-            #Professors/AdminAssistants can list all
-            #AdminAssistants can update, destroy, retrieve, list
+            #anyone can create
+            #Students can RUD + list only themselves
+            #Professors can list all
+            #AdminAssistants can update, destroy, retrieve, list all
             for perm in post_perm:
                 if perm.codename == "add_student":
                     stud_group.permissions.add(perm)
@@ -67,26 +68,29 @@ class Command(BaseCommand):
             content_type = ContentType.objects.get_for_model(Professor)
             post_perm = Permission.objects.filter(content_type=content_type)
             print(f"Prof Perms:\n{[perm.codename for perm in post_perm]}\n") #-- ['add_professor', 'change_professor', 'delete_professor', 'view_professor']
-            #allow professors to retrieve, list professors
-            #AdminAssistants can create, destroy, retrieve, list
+            #Students can retrieve/list all
+            #Professors can UD only themselves, retrieve/list all 
+            #AdminAssistants can CRUD + list all
             for perm in post_perm:
                 if perm.codename == "view_professor":
+                    stud_group.permissions.add(perm)
                     prof_group.permissions.add(perm)
                     aa_group.permissions.add(perm)
                 else:
                     aa_group.permissions.add(perm)
-
+            
             #-AdminAssistant model
             content_type = ContentType.objects.get_for_model(AdminAssistant)
             post_perm = Permission.objects.filter(content_type=content_type)
             print(f"AdminAssistant Perms:\n{[perm.codename for perm in post_perm]}\n") #-- ['add_adminassistant', 'change_adminassistant', 'delete_adminassistant', 'view_adminassistant']
-            #allow AdminAssistants to create other AdminAssistants
-            #dont allow AdminAssistants to change/delete other AdminAssistants
+            #Professors can retrieve/list all 
+            #AdminAssistants can UD only themselves, can create/retrieve/list all 
             for perm in post_perm:
                 if perm.codename == "add_adminassistant":
                     aa_group.permissions.add(perm)
                 elif perm.codename == "view_adminassistant":
                     aa_group.permissions.add(perm)
+                    prof_group.permissions.add(perm)
 
             #-Department model
             content_type = ContentType.objects.get_for_model(Department)
@@ -207,7 +211,6 @@ class Command(BaseCommand):
             hie.save()
 
             #-create SAMPLE Professor user
-            # pw = make_password("mikey_scotch")
             u = User.objects.create_user(username='mikeyg', last_name='Goldweber', email='goldweber@xavier.edu', first_name='Michael', password="mikey_scotch")
             u.groups.add(prof_group)
             p = Profile.objects.create(user=u, prefix='Dr.', role=Profile.PROFESSOR)
@@ -215,61 +218,36 @@ class Command(BaseCommand):
             Professor.objects.create(prof=p, department=dept, degree_desc="PhD in Computer Science, University of Michigan 1969")
 
             #-create SAMPLE AdminAssistant user
-            # pw = make_password("donna_pw")
             u = User.objects.create_user(username='donnaw', last_name='Wallace', email='wallace@xavier.edu', first_name='Donna', password="donna_pw")
             u.groups.add(aa_group)
             p = Profile.objects.create(user=u, role=Profile.ADMINASSISTANT)
             dept=Department.objects.get(name="Computer Science")
             AdminAssistant.objects.create(prof=p, department=dept)
 
+            #-create Students
+            u = User.objects.create_user(username='kolleng', last_name='Gruizenga', email='gruizengak@xavier.edu', first_name='Kollen', password='test_kg_pw')
+            u.groups.add(stud_group)
+            p = Profile.objects.create(user=u, suffix='II', role=Profile.STUDENT)
+            s = Student.objects.create(prof=p, schoolyear=Student.SENIOR)
+            majors=[Major.objects.get(name="BS in Computer Science"), Major.objects.get(name="Finance")]
+            minors=[Minor.objects.get(name="Mathematics")]
+            for m in majors:
+                s.major.add(m)
+            for m in minors:
+                s.minor.add(m)
+            s.save()
+
+            u = User.objects.create_user(username='aaronr', last_name='Ripley', email='ripleya@xavier.edu', first_name='Aaron', password='test_ar_pw')
+            u.groups.add(stud_group)
+            p = Profile.objects.create(user=u, prefix='Mr.', role=Profile.STUDENT)
+            s = Student.objects.create(prof=p, schoolyear=Student.JUNIOR)
+            majors=[Major.objects.get(name="BS in Computer Science")]
+            for m in majors:
+                s.major.add(m)
+            s.save()
+            
         except:
             raise CommandError('DB-initialization failed.')
-
-# user.has_perm("data.view_student")
-# user.has_perm("data.add_professor")
-
-# #TESTING CREATION OF DIFFERENT USER TYPES
-# from django.contrib.auth.hashers import make_password
-# stud_group = Group.objects.get(name="Student")
-# prof_group = Group.objects.get(name="Professor")
-# aa_group = Group.objects.get(name="AdminAssistant")
-
-# #-create Student
-# from django.contrib.auth.models import User
-# from data.models import Profile
-# from data.models import Student
-
-# u = User.objects.create_user(username='kolleng', last_name='Gruizenga', email='gruizengak@xavier.edu', first_name='Kollen', password=make_password('test_kg_pw'))
-# u.groups.add(stud_group)
-# p = Profile.objects.create(user=u, suffix='II', role=Profile.STUDENT)
-# maj=Major.objects.get(name="BS in Computer Science")
-# min=Minor.objects.get(name="Mathematics")
-# Student.objects.create(prof=p, major=maj, minor=min, schoolyear=Student.SENIOR)
-
-# #-create Professor
-# from django.contrib.auth.models import User
-# from data.models import Profile
-# from data.models import Professor
-
-# # pw = make_password("mikey_scotch")
-# u = User.objects.create_user(username='mikeyg', last_name='Goldweber', email='goldweber@xavier.edu', first_name='Michael', password="mikey_scotch")
-# u.groups.add(prof_group)
-# p = Profile.objects.create(user=u, prefix='Dr.', role=Profile.PROFESSOR)
-# dept=Department.objects.get(name="Computer Science")
-# Professor.objects.create(prof=p, department=dept, degree_desc="PhD in Computer Science, University of Michigan 1969")
-
-# #-create AdminAssistant
-# from django.contrib.auth.models import User
-# from data.models import Profile
-# from data.models import AdminAssistant
-
-# # pw = make_password("donna_pw")
-# u = User.objects.create_user(username='donnaw', last_name='Wallace', email='wallace@xavier.edu', first_name='Donna', password="donna_pw")
-# u.groups.add(aa_group)
-# p = Profile.objects.create(user=u, role=Profile.ADMINASSISTANT)
-# dept=Department.objects.get(name="Computer Science")
-# AdminAssistant.objects.create(prof=p, department=dept)
-
 
 
 
