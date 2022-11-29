@@ -18,7 +18,7 @@ from django.urls import include, path
 from BackendDev import views as main_views
 from data import views as data_views
 from rest_framework import routers
-
+from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
 
 router = routers.DefaultRouter()
 #access registered ViewSets: localhost:8000/api/[NAME]
@@ -40,5 +40,13 @@ urlpatterns = [
     path('files/', main_views.files, name='files'), #access: localhost:8000/files/
     path('login/', main_views.auth, name='auth'),
     #path('api/', data_views.api, name='api'), #access: localhost:8000/api/
-    path('api/', include(router.urls)) #access: localhost:8000/api/[router.url]
+    path('api/', include(router.urls)), #access: localhost:8000/api/[router.url]
+    path("schema/", SpectacularAPIView.as_view(), name="schema"),
+    path(
+        "docs/",
+        SpectacularSwaggerView.as_view(
+            template_name="swagger-ui.html", url_name="schema"
+        ),
+        name="swagger-ui",
+    ),
 ]
