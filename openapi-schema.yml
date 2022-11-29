@@ -1,0 +1,1415 @@
+openapi: 3.0.2
+info:
+  title: ''
+  version: ''
+paths:
+  /api/Departments/:
+    get:
+      operationId: listDepartments
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Department'
+          description: ''
+      tags:
+      - api
+    post:
+      operationId: createDepartment
+      description: ''
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Department'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Department'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Department'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Department'
+          description: ''
+      tags:
+      - api
+  /api/Departments/{id}/:
+    get:
+      operationId: retrieveDepartment
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this department.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Department'
+          description: ''
+      tags:
+      - api
+    put:
+      operationId: updateDepartment
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this department.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Department'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Department'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Department'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Department'
+          description: ''
+      tags:
+      - api
+    patch:
+      operationId: partialUpdateDepartment
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this department.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Department'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Department'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Department'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Department'
+          description: ''
+      tags:
+      - api
+    delete:
+      operationId: destroyDepartment
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this department.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+      tags:
+      - api
+  /api/Majors/:
+    get:
+      operationId: listMajors
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Major'
+          description: ''
+      tags:
+      - api
+    post:
+      operationId: createMajor
+      description: ''
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Major'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Major'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Major'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Major'
+          description: ''
+      tags:
+      - api
+  /api/Majors/{id}/:
+    get:
+      operationId: retrieveMajor
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this major.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Major'
+          description: ''
+      tags:
+      - api
+    put:
+      operationId: updateMajor
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this major.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Major'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Major'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Major'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Major'
+          description: ''
+      tags:
+      - api
+    patch:
+      operationId: partialUpdateMajor
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this major.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Major'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Major'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Major'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Major'
+          description: ''
+      tags:
+      - api
+    delete:
+      operationId: destroyMajor
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this major.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+      tags:
+      - api
+  /api/Minors/:
+    get:
+      operationId: listMinors
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Minor'
+          description: ''
+      tags:
+      - api
+    post:
+      operationId: createMinor
+      description: ''
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Minor'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Minor'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Minor'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Minor'
+          description: ''
+      tags:
+      - api
+  /api/Minors/{id}/:
+    get:
+      operationId: retrieveMinor
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this minor.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Minor'
+          description: ''
+      tags:
+      - api
+    put:
+      operationId: updateMinor
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this minor.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Minor'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Minor'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Minor'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Minor'
+          description: ''
+      tags:
+      - api
+    patch:
+      operationId: partialUpdateMinor
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this minor.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Minor'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Minor'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Minor'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Minor'
+          description: ''
+      tags:
+      - api
+    delete:
+      operationId: destroyMinor
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this minor.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+      tags:
+      - api
+  /api/Students/:
+    get:
+      operationId: listStudents
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Student'
+          description: ''
+      tags:
+      - api
+    post:
+      operationId: createStudent
+      description: ''
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Student'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Student'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Student'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Student'
+          description: ''
+      tags:
+      - api
+  /api/Students/{id}/:
+    get:
+      operationId: retrieveStudent
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this student.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Student'
+          description: ''
+      tags:
+      - api
+    put:
+      operationId: updateStudent
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this student.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Student'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Student'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Student'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Student'
+          description: ''
+      tags:
+      - api
+    patch:
+      operationId: partialUpdateStudent
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this student.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Student'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Student'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Student'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Student'
+          description: ''
+      tags:
+      - api
+    delete:
+      operationId: destroyStudent
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this student.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+      tags:
+      - api
+  /api/Professors/:
+    get:
+      operationId: listProfessors
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Professor'
+          description: ''
+      tags:
+      - api
+    post:
+      operationId: createProfessor
+      description: ''
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Professor'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Professor'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Professor'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Professor'
+          description: ''
+      tags:
+      - api
+  /api/Professors/{id}/:
+    get:
+      operationId: retrieveProfessor
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this professor.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Professor'
+          description: ''
+      tags:
+      - api
+    put:
+      operationId: updateProfessor
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this professor.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Professor'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Professor'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Professor'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Professor'
+          description: ''
+      tags:
+      - api
+    patch:
+      operationId: partialUpdateProfessor
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this professor.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Professor'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Professor'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Professor'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Professor'
+          description: ''
+      tags:
+      - api
+    delete:
+      operationId: destroyProfessor
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this professor.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+      tags:
+      - api
+  /api/AdminAssistants/:
+    get:
+      operationId: listAdminAssistants
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AdminAssistant'
+          description: ''
+      tags:
+      - api
+    post:
+      operationId: createAdminAssistant
+      description: ''
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AdminAssistant'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/AdminAssistant'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/AdminAssistant'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdminAssistant'
+          description: ''
+      tags:
+      - api
+  /api/AdminAssistants/{id}/:
+    get:
+      operationId: retrieveAdminAssistant
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this admin assistant.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdminAssistant'
+          description: ''
+      tags:
+      - api
+    put:
+      operationId: updateAdminAssistant
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this admin assistant.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AdminAssistant'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/AdminAssistant'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/AdminAssistant'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdminAssistant'
+          description: ''
+      tags:
+      - api
+    patch:
+      operationId: partialUpdateAdminAssistant
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this admin assistant.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AdminAssistant'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/AdminAssistant'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/AdminAssistant'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdminAssistant'
+          description: ''
+      tags:
+      - api
+    delete:
+      operationId: destroyAdminAssistant
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this admin assistant.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+      tags:
+      - api
+  /api/Courses/:
+    get:
+      operationId: listCourses
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Course'
+          description: ''
+      tags:
+      - api
+    post:
+      operationId: createCourse
+      description: ''
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Course'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Course'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Course'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Course'
+          description: ''
+      tags:
+      - api
+  /api/Courses/{crn}/:
+    get:
+      operationId: retrieveCourse
+      description: ''
+      parameters:
+      - name: crn
+        in: path
+        required: true
+        description: A unique value identifying this course.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Course'
+          description: ''
+      tags:
+      - api
+    put:
+      operationId: updateCourse
+      description: ''
+      parameters:
+      - name: crn
+        in: path
+        required: true
+        description: A unique value identifying this course.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Course'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Course'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Course'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Course'
+          description: ''
+      tags:
+      - api
+    patch:
+      operationId: partialUpdateCourse
+      description: ''
+      parameters:
+      - name: crn
+        in: path
+        required: true
+        description: A unique value identifying this course.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Course'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Course'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Course'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Course'
+          description: ''
+      tags:
+      - api
+    delete:
+      operationId: destroyCourse
+      description: ''
+      parameters:
+      - name: crn
+        in: path
+        required: true
+        description: A unique value identifying this course.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+      tags:
+      - api
+  /api/HighImpactExperiences/:
+    get:
+      operationId: listHighImpactExperiences
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/HighImpactExperience'
+          description: ''
+      tags:
+      - api
+    post:
+      operationId: createHighImpactExperience
+      description: ''
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/HighImpactExperience'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/HighImpactExperience'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/HighImpactExperience'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HighImpactExperience'
+          description: ''
+      tags:
+      - api
+  /api/HighImpactExperiences/{name}/:
+    get:
+      operationId: retrieveHighImpactExperience
+      description: ''
+      parameters:
+      - name: name
+        in: path
+        required: true
+        description: A unique value identifying this high impact experience.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HighImpactExperience'
+          description: ''
+      tags:
+      - api
+    put:
+      operationId: updateHighImpactExperience
+      description: ''
+      parameters:
+      - name: name
+        in: path
+        required: true
+        description: A unique value identifying this high impact experience.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/HighImpactExperience'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/HighImpactExperience'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/HighImpactExperience'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HighImpactExperience'
+          description: ''
+      tags:
+      - api
+    patch:
+      operationId: partialUpdateHighImpactExperience
+      description: ''
+      parameters:
+      - name: name
+        in: path
+        required: true
+        description: A unique value identifying this high impact experience.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/HighImpactExperience'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/HighImpactExperience'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/HighImpactExperience'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HighImpactExperience'
+          description: ''
+      tags:
+      - api
+    delete:
+      operationId: destroyHighImpactExperience
+      description: ''
+      parameters:
+      - name: name
+        in: path
+        required: true
+        description: A unique value identifying this high impact experience.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+      tags:
+      - api
+  /api/Events/:
+    get:
+      operationId: listEvents
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Event'
+          description: ''
+      tags:
+      - api
+    post:
+      operationId: createEvent
+      description: ''
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Event'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Event'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Event'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Event'
+          description: ''
+      tags:
+      - api
+  /api/Events/{id}/:
+    get:
+      operationId: retrieveEvent
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique value identifying this event.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Event'
+          description: ''
+      tags:
+      - api
+    put:
+      operationId: updateEvent
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique value identifying this event.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Event'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Event'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Event'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Event'
+          description: ''
+      tags:
+      - api
+    patch:
+      operationId: partialUpdateEvent
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique value identifying this event.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Event'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Event'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Event'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Event'
+          description: ''
+      tags:
+      - api
+    delete:
+      operationId: destroyEvent
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique value identifying this event.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+      tags:
+      - api
+  /api/Majors/delete/:
+    delete:
+      operationId: destroyMajor
+      description: ''
+      parameters: []
+      responses:
+        '204':
+          description: ''
+      tags:
+      - api
+components:
+  schemas:
+    Department:
+      type: object
+      properties:
+        name:
+          type: string
+          maxLength: 50
+      required:
+      - name
+    Major:
+      type: object
+      properties:
+        name:
+          type: string
+          maxLength: 100
+        subject:
+          type: string
+      required:
+      - name
+      - subject
+    Minor:
+      type: object
+      properties:
+        name:
+          type: string
+          maxLength: 100
+        subject:
+          type: string
+      required:
+      - name
+      - subject
+    Student:
+      type: object
+      properties:
+        user:
+          type: string
+        major:
+          type: string
+          nullable: true
+        minor:
+          type: string
+          nullable: true
+        schoolyear:
+          enum:
+          - FR
+          - SO
+          - JR
+          - SR
+          - GR
+          type: string
+      required:
+      - user
+      - schoolyear
+    Professor:
+      type: object
+      properties:
+        user:
+          type: string
+        department:
+          type: string
+        degree_desc:
+          type: string
+          maxLength: 100
+      required:
+      - user
+      - department
+      - degree_desc
+    AdminAssistant:
+      type: object
+      properties:
+        user:
+          type: string
+        department:
+          type: string
+          nullable: true
+      required:
+      - user
+    Course:
+      type: object
+      properties:
+        crn:
+          type: integer
+        title:
+          type: string
+          maxLength: 50
+        desc_text:
+          type: string
+          maxLength: 200
+        course_num:
+          type: integer
+        subject:
+          type: string
+        instructor:
+          type: string
+          nullable: true
+        credit_hours:
+          type: integer
+      required:
+      - title
+      - subject
+      - credit_hours
+    HighImpactExperience:
+      type: object
+      properties:
+        name:
+          type: string
+          maxLength: 50
+        RTX_name:
+          type: string
+          maxLength: 50
+        Freshman_desc:
+          type: string
+          maxLength: 200
+        Sophomore_desc:
+          type: string
+          maxLength: 200
+        Junior_desc:
+          type: string
+          maxLength: 200
+        Senior_desc:
+          type: string
+          maxLength: 200
+        creation_date:
+          type: string
+          format: date-time
+        area:
+          type: string
+          nullable: true
+      required:
+      - name
+      - RTX_name
+      - Freshman_desc
+      - Sophomore_desc
+      - Junior_desc
+      - Senior_desc
+      - creation_date
+    Event:
+      type: object
+      properties:
+        id:
+          type: string
+          maxLength: 7
+        name:
+          type: string
+          maxLength: 50
+        start_time:
+          type: string
+          format: date-time
+        end_time:
+          type: string
+          format: date-time
+        creation_time:
+          type: string
+          format: date-time
+        modified_time:
+          type: string
+          format: date-time
+        location:
+          type: string
+          maxLength: 100
+        categories:
+          type: string
+          maxLength: 100
+        organizer:
+          type: string
+          maxLength: 50
+        summary:
+          type: string
+          maxLength: 50
+        description:
+          type: string
+          maxLength: 1000
+      required:
+      - id
+      - name
+      - start_time
+      - end_time
+      - creation_time
+      - modified_time
+      - location
+      - categories
+      - organizer
+      - summary
+      - description
