@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.core.validators import MaxValueValidator
 # from django.conf import settings.AUTH_USER_MODEL
 
 # Create models here. A model is basically a database layout with additional metadata
@@ -24,8 +25,8 @@ class Profile(models.Model):
         on_delete=models.CASCADE,
         related_name='users' #ProfileObj.users.all() - returns all User obj rel. to Profile
     )
-    prefix = models.CharField(max_length=4)
-    suffix = models.CharField(max_length=4)
+    prefix = models.CharField(max_length=4, blank=True) #field can be blank
+    suffix = models.CharField(max_length=4, blank=True) #field can be blank
     role = models.CharField(
         max_length=2,
         choices=ROLES_CHOICES,
@@ -35,11 +36,11 @@ class Profile(models.Model):
     )
 
 
-class Department(models.Model):
+class Department(models.Model): #Superuser will create
     name = models.CharField(max_length=50, null=False, blank=False) #DB cant store field as NULL, field can't be blank
 
 
-class Major(models.Model):
+class Major(models.Model): #AdminAssistant will create
     name = models.CharField(max_length=100)
     subject = models.ForeignKey(
         Department, 
@@ -50,7 +51,7 @@ class Major(models.Model):
     )
 
 
-class Minor(models.Model):
+class Minor(models.Model): #AdminAssistant will create
     name = models.CharField(max_length=100)
     subject = models.ForeignKey(
         Department, 
@@ -61,7 +62,7 @@ class Minor(models.Model):
     )
 
 
-class Student(models.Model):
+class Student(models.Model): #Any can create
     FRESHMAN = 'FR'
     SOPHOMORE = 'SO'
     JUNIOR = 'JR'
@@ -74,6 +75,7 @@ class Student(models.Model):
         (SENIOR, 'Senior'),
         (GRADUATE, 'Graduate')
     ]
+    # stud_id = models.PositiveIntegerField(primary_key=True, validators=[MaxValueValidator(999999999)])
     prof = models.ForeignKey(
         Profile, 
         null=False, #DB cant store field as NULL
@@ -84,14 +86,16 @@ class Student(models.Model):
     major = models.ForeignKey(
         Major, 
         null=True, #DB can store empty field as NULL
-        blank=True, #field allowed to be blank
+        blank=True, #field is allowed to be blank
         on_delete=models.SET_NULL,
+        default=None,
         related_name='stud_majors' #s1.stud_majors.all() - all Major obj rel. to Student
     )
     minor = models.ForeignKey(
         Minor, 
         null=True, #DB can store empty field as NULL
-        blank=True, #field not allowed to be blank
+        blank=True, #field is allowed to be blank
+        default=None,
         on_delete=models.SET_NULL,
         related_name='stud_minors' #s1.stud_minors.all() - all Minor obj rel. to Student
     )
@@ -104,8 +108,7 @@ class Student(models.Model):
     )
 
 
-class Professor(models.Model):
-    # prof_id = models.IntegerField(default=000000000, primary_key=True)
+class Professor(models.Model): #AdminAssistant will create
     prof = models.ForeignKey(
         Profile, 
         null=False, #DB cant store field as NULL
@@ -123,7 +126,7 @@ class Professor(models.Model):
     degree_desc = models.CharField(max_length=100)
 
 
-class AdminAssistant(models.Model):
+class AdminAssistant(models.Model): #Superuser/other AdminAssistant's will create
     prof = models.ForeignKey(
         Profile,
         null=False, #DB cant store field as NULL
@@ -140,8 +143,8 @@ class AdminAssistant(models.Model):
     )
 
 
-class Course(models.Model):
-    crn = models.IntegerField(default=00000, primary_key=True, null=False, blank=False)
+class Course(models.Model): #AdminAssistant or Professor will create
+    crn = models.PositiveIntegerField(primary_key=True, null=False, blank=False, validators=[MaxValueValidator(99999)])
     title = models.CharField(max_length=50, null=False, blank=False)
     desc_text = models.CharField(max_length=200, null=False, blank=True)
     course_num = models.IntegerField(default=000, null=False, blank=False)
@@ -162,8 +165,8 @@ class Course(models.Model):
     credit_hours = models.IntegerField(null=False, blank=False)
 
 
-class HighImpactExperience(models.Model):
-    name = models.CharField(max_length=50, primary_key=True)
+class HighImpactExperience(models.Model): #AdminAssistant or Professor will create
+    name = models.CharField(max_length=50)
     RTX_name = models.CharField(max_length=50)
     Freshman_desc = models.CharField(max_length=200)
     Sophomore_desc = models.CharField(max_length=200)
@@ -179,15 +182,16 @@ class HighImpactExperience(models.Model):
         related_name='hie_depts' #h1.hie_depts.all() - all Department obj rel. to HighImpactExperience
     )
     advisor = models.ForeignKey(
-        Profile,
+        Professor,
         null=True,
         blank=True,
-        on_delete=models.CASCADE,
-        related_name="experience_advisor")
+        on_delete=models.SET_NULL,
+        related_name='hie_professor'
+    )
 
 
 class Event(models.Model):
-    id = models.CharField(max_length=7, primary_key=True) # can get this from the url
+    id = models.PositiveSmallIntegerField(primary_key=True, validators=[MaxValueValidator(9999999)]) # can get this from the url
     name = models.CharField(max_length=50)
     start_time = models.DateTimeField()
     end_time = models.DateTimeField()
