@@ -15,10 +15,30 @@ from django.http import Http404
 from django.core.exceptions import PermissionDenied
 from data.permissions import IsOwner
 
+import sqlite3 
 
-def api(request):
-    return HttpResponse("API Home Page")
+def tbl_cnts(request):
+    con=sqlite3.connect("./databases/db.sqlite3")
+    cur = con.cursor()
 
+    results = cur.execute("SELECT name FROM sqlite_master WHERE type='table' ORDER BY Name")
+    tables = [t[0] for t in results.fetchall()]
+    user_facing_tables = [t for t in tables if "data_" in t and t != "data_profile"] 
+
+    table_cnts = {}
+    for i in tables:
+        cur.execute(f"SELECT COUNT(*) FROM {i}")
+        table_cnts[i] = cur.fetchone()[0]
+    
+    metrics = {
+        'numtbls' : len(tables), 
+        'table_cnts' : table_cnts, 
+        'r_tables' : [r for r in tables if r not in user_facing_tables],
+        'rt_cnt' : len([r for r in tables if r not in user_facing_tables]),
+        'u_tables' : user_facing_tables,
+        'ut_cnt' : len(user_facing_tables)
+        }
+    return render(request, 'data/tblcnts.html', metrics)
 
 
 class StudentViewSet(viewsets.ModelViewSet):
