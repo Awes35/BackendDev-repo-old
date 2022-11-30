@@ -197,13 +197,7 @@ class Event(models.Model):
     url = models.CharField(max_length=100, blank=True)
     location = models.CharField(max_length=100, blank=True)
     categories = models.CharField(max_length=100) # event_type and event_tags ??
-    organizer = models.ForeignKey(
-        Profile,
-        null=True,
-        blank=False,
-        on_delete=models.SET_NULL,
-        related_name='event_organizer'
-    )
+    organizer = models.CharField(max_length=50)
     description = models.CharField(max_length=500)
     hie = models.ForeignKey(
         HighImpactExperience,

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    <title>{% block title %} API Home {% endblock %}</title>
+</head>
+
+<body>
+    <div id="content">
+        {% block content %}
+        <h2>All Tables</h2>
+        <p><h3> + Table Count: {{ numtbls }} </h3></p>
+        <blockquote>
+            <h3>- User-Facing Tables (Count: {{ ut_cnt}}) </h3>
+            <blockquote>
+                <blockquote>
+                    {% for k, v in table_cnts.items %}
+                        {% if k in u_tables %}
+                            <h4> 
+                                > {{ k }}
+                                <p>
+                                    <blockquote> 
+                                        >> Entries: {{ v }} 
+                                    </blockquote>
+                                </p>
+                            </h4>
+                        {% endif %}
+                    {% endfor %}
+                </blockquote>
+            </blockquote>
+            
+            <h3>- Restricted Tables (Count: {{ rt_cnt }}) </h3>
+            <blockquote>
+                <blockquote>
+                    {% for k, v in  table_cnts.items %}
+                        {% if k in r_tables %}
+                            <h4> 
+                                > {{ k }} 
+                                <p>
+                                    <blockquote>  
+                                        >> Entries: {{ v }} 
+                                    </blockquote>
+                                </p>
+                            </h4>
+                        {% endif %}
+                    {% endfor %}
+                </blockquote>
+            </blockquote>
+
+            
+        </blockquote>
+        
+
+        {% endblock %}
+    </div>
+</body>
+</html>
