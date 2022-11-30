@@ -18,7 +18,7 @@ from django.urls import include, path
 from BackendDev import views as main_views
 from data import views as data_views
 from rest_framework import routers
-
+from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
 
 router = routers.SimpleRouter()
 #access registered ViewSets: localhost:8000/api/[NAME]
@@ -65,7 +65,17 @@ urlpatterns = [
     path('HIEs-display/', main_views.HIEs_display, name='HIE-display'),
     path('HIEs-raw/', main_views.HIEs_raw, name='HIE-raw'),
     path('files/', main_views.files, name='files'), #access: localhost:8000/files/
-    path('api/', data_views.tbl_cnts, name='api'), #access: localhost:8000/api/
+    path('api/', data_views.tbl_cnts, name='api-home'), #access: localhost:8000/api/
+
+    path('api/', include(router.urls)), #access: localhost:8000/api/[router.url]
+    path("schema/", SpectacularAPIView.as_view(), name="schema"),
+    path(
+        "docs/",
+        SpectacularSwaggerView.as_view(
+            template_name="swagger-ui.html", url_name="schema"
+        ),
+        name="swagger-ui",
+    ),
     
     path('api/Student/register/', student_create, name='student-create'),
     path('api/Student/list/', student_list, name='student-list'),
@@ -77,7 +87,5 @@ urlpatterns = [
 
     path('api/AdminAssistant/register/', aa_create, name='aa-create'),
     path('api/AdminAssistant/list/', aa_list, name='aa-list'),
-    path('api/AdminAssistant/<int:pk>/', aa_specific, name='aa-specific'),
-    
-    path('api/', include(router.urls)) #access: localhost:8000/api/[router.url]
+    path('api/AdminAssistant/<int:pk>/', aa_specific, name='aa-specific')
 ]

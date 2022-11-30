@@ -338,4 +338,3 @@ class CourseSerializer(serializers.ModelSerializer):
             "credit_hours",
             "desc_text"
         ]
-

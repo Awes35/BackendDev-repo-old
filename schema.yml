@@ -1,0 +1,1716 @@
+openapi: 3.0.3
+info:
+  title: Xavier Immersive Learning API
+  version: 1.0.0
+  description: The API for the immersive learning/engagement app
+paths:
+  /api/AdminAssistants/:
+    get:
+      operationId: AdminAssistants_list
+      tags:
+      - AdminAssistants
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AdminAssistant'
+          description: ''
+    post:
+      operationId: AdminAssistants_create
+      tags:
+      - AdminAssistants
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AdminAssistant'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/AdminAssistant'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/AdminAssistant'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdminAssistant'
+          description: ''
+  /api/AdminAssistants/{id}/:
+    get:
+      operationId: AdminAssistants_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this admin assistant.
+        required: true
+      tags:
+      - AdminAssistants
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdminAssistant'
+          description: ''
+    put:
+      operationId: AdminAssistants_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this admin assistant.
+        required: true
+      tags:
+      - AdminAssistants
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AdminAssistant'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/AdminAssistant'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/AdminAssistant'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdminAssistant'
+          description: ''
+    patch:
+      operationId: AdminAssistants_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this admin assistant.
+        required: true
+      tags:
+      - AdminAssistants
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedAdminAssistant'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedAdminAssistant'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedAdminAssistant'
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdminAssistant'
+          description: ''
+    delete:
+      operationId: AdminAssistants_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this admin assistant.
+        required: true
+      tags:
+      - AdminAssistants
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/Courses/:
+    get:
+      operationId: Courses_list
+      tags:
+      - Courses
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Course'
+          description: ''
+    post:
+      operationId: Courses_create
+      tags:
+      - Courses
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Course'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Course'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Course'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Course'
+          description: ''
+  /api/Courses/{crn}/:
+    get:
+      operationId: Courses_retrieve
+      parameters:
+      - in: path
+        name: crn
+        schema:
+          type: integer
+        description: A unique value identifying this course.
+        required: true
+      tags:
+      - Courses
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Course'
+          description: ''
+    put:
+      operationId: Courses_update
+      parameters:
+      - in: path
+        name: crn
+        schema:
+          type: integer
+        description: A unique value identifying this course.
+        required: true
+      tags:
+      - Courses
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Course'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Course'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Course'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Course'
+          description: ''
+    patch:
+      operationId: Courses_partial_update
+      parameters:
+      - in: path
+        name: crn
+        schema:
+          type: integer
+        description: A unique value identifying this course.
+        required: true
+      tags:
+      - Courses
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedCourse'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedCourse'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedCourse'
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Course'
+          description: ''
+    delete:
+      operationId: Courses_destroy
+      parameters:
+      - in: path
+        name: crn
+        schema:
+          type: integer
+        description: A unique value identifying this course.
+        required: true
+      tags:
+      - Courses
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/Departments/:
+    get:
+      operationId: Departments_list
+      tags:
+      - Departments
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Department'
+          description: ''
+    post:
+      operationId: Departments_create
+      tags:
+      - Departments
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Department'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Department'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Department'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Department'
+          description: ''
+  /api/Departments/{id}/:
+    get:
+      operationId: Departments_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this department.
+        required: true
+      tags:
+      - Departments
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Department'
+          description: ''
+    put:
+      operationId: Departments_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this department.
+        required: true
+      tags:
+      - Departments
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Department'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Department'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Department'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Department'
+          description: ''
+    patch:
+      operationId: Departments_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this department.
+        required: true
+      tags:
+      - Departments
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedDepartment'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedDepartment'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedDepartment'
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Department'
+          description: ''
+    delete:
+      operationId: Departments_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this department.
+        required: true
+      tags:
+      - Departments
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '204':
+          description: No response body
+  /api/Events/:
+    get:
+      operationId: Events_list
+      tags:
+      - Events
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Event'
+          description: ''
+    post:
+      operationId: Events_create
+      tags:
+      - Events
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Event'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Event'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Event'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Event'
+          description: ''
+  /api/Events/{id}/:
+    get:
+      operationId: Events_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        description: A unique value identifying this event.
+        required: true
+      tags:
+      - Events
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Event'
+          description: ''
+    put:
+      operationId: Events_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        description: A unique value identifying this event.
+        required: true
+      tags:
+      - Events
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Event'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Event'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Event'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Event'
+          description: ''
+    patch:
+      operationId: Events_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        description: A unique value identifying this event.
+        required: true
+      tags:
+      - Events
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedEvent'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedEvent'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedEvent'
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Event'
+          description: ''
+    delete:
+      operationId: Events_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        description: A unique value identifying this event.
+        required: true
+      tags:
+      - Events
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/HighImpactExperiences/:
+    get:
+      operationId: HighImpactExperiences_list
+      tags:
+      - HighImpactExperiences
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/HighImpactExperience'
+          description: ''
+    post:
+      operationId: HighImpactExperiences_create
+      tags:
+      - HighImpactExperiences
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/HighImpactExperience'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/HighImpactExperience'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/HighImpactExperience'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HighImpactExperience'
+          description: ''
+  /api/HighImpactExperiences/{name}/:
+    get:
+      operationId: HighImpactExperiences_retrieve
+      parameters:
+      - in: path
+        name: name
+        schema:
+          type: string
+        description: A unique value identifying this high impact experience.
+        required: true
+      tags:
+      - HighImpactExperiences
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HighImpactExperience'
+          description: ''
+    put:
+      operationId: HighImpactExperiences_update
+      parameters:
+      - in: path
+        name: name
+        schema:
+          type: string
+        description: A unique value identifying this high impact experience.
+        required: true
+      tags:
+      - HighImpactExperiences
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/HighImpactExperience'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/HighImpactExperience'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/HighImpactExperience'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HighImpactExperience'
+          description: ''
+    patch:
+      operationId: HighImpactExperiences_partial_update
+      parameters:
+      - in: path
+        name: name
+        schema:
+          type: string
+        description: A unique value identifying this high impact experience.
+        required: true
+      tags:
+      - HighImpactExperiences
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedHighImpactExperience'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedHighImpactExperience'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedHighImpactExperience'
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HighImpactExperience'
+          description: ''
+    delete:
+      operationId: HighImpactExperiences_destroy
+      parameters:
+      - in: path
+        name: name
+        schema:
+          type: string
+        description: A unique value identifying this high impact experience.
+        required: true
+      tags:
+      - HighImpactExperiences
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/Majors/:
+    get:
+      operationId: Majors_list
+      tags:
+      - Majors
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Major'
+          description: ''
+    post:
+      operationId: Majors_create
+      tags:
+      - Majors
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Major'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Major'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Major'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Major'
+          description: ''
+  /api/Majors/{id}/:
+    get:
+      operationId: Majors_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this major.
+        required: true
+      tags:
+      - Majors
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Major'
+          description: ''
+    put:
+      operationId: Majors_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this major.
+        required: true
+      tags:
+      - Majors
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Major'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Major'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Major'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Major'
+          description: ''
+    patch:
+      operationId: Majors_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this major.
+        required: true
+      tags:
+      - Majors
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedMajor'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedMajor'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedMajor'
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Major'
+          description: ''
+    delete:
+      operationId: Majors_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this major.
+        required: true
+      tags:
+      - Majors
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '204':
+          description: No response body
+  /api/Majors/delete/:
+    delete:
+      operationId: Majors_delete_destroy
+      tags:
+      - Majors
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '204':
+          description: No response body
+  /api/Minors/:
+    get:
+      operationId: Minors_list
+      tags:
+      - Minors
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Minor'
+          description: ''
+    post:
+      operationId: Minors_create
+      tags:
+      - Minors
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Minor'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Minor'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Minor'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Minor'
+          description: ''
+  /api/Minors/{id}/:
+    get:
+      operationId: Minors_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this minor.
+        required: true
+      tags:
+      - Minors
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Minor'
+          description: ''
+    put:
+      operationId: Minors_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this minor.
+        required: true
+      tags:
+      - Minors
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Minor'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Minor'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Minor'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Minor'
+          description: ''
+    patch:
+      operationId: Minors_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this minor.
+        required: true
+      tags:
+      - Minors
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedMinor'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedMinor'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedMinor'
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Minor'
+          description: ''
+    delete:
+      operationId: Minors_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this minor.
+        required: true
+      tags:
+      - Minors
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/Professors/:
+    get:
+      operationId: Professors_list
+      tags:
+      - Professors
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Professor'
+          description: ''
+    post:
+      operationId: Professors_create
+      tags:
+      - Professors
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Professor'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Professor'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Professor'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Professor'
+          description: ''
+  /api/Professors/{id}/:
+    get:
+      operationId: Professors_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this professor.
+        required: true
+      tags:
+      - Professors
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Professor'
+          description: ''
+    put:
+      operationId: Professors_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this professor.
+        required: true
+      tags:
+      - Professors
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Professor'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Professor'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Professor'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Professor'
+          description: ''
+    patch:
+      operationId: Professors_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this professor.
+        required: true
+      tags:
+      - Professors
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedProfessor'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedProfessor'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedProfessor'
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Professor'
+          description: ''
+    delete:
+      operationId: Professors_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this professor.
+        required: true
+      tags:
+      - Professors
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/Students/:
+    get:
+      operationId: Students_list
+      tags:
+      - Students
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Student'
+          description: ''
+    post:
+      operationId: Students_create
+      tags:
+      - Students
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Student'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Student'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Student'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Student'
+          description: ''
+  /api/Students/{id}/:
+    get:
+      operationId: Students_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this student.
+        required: true
+      tags:
+      - Students
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Student'
+          description: ''
+    put:
+      operationId: Students_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this student.
+        required: true
+      tags:
+      - Students
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Student'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Student'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Student'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Student'
+          description: ''
+    patch:
+      operationId: Students_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this student.
+        required: true
+      tags:
+      - Students
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedStudent'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedStudent'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedStudent'
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Student'
+          description: ''
+    delete:
+      operationId: Students_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this student.
+        required: true
+      tags:
+      - Students
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '204':
+          description: No response body
+components:
+  schemas:
+    AdminAssistant:
+      type: object
+      properties:
+        user:
+          type: string
+          format: uri
+        department:
+          type: string
+          format: uri
+          nullable: true
+      required:
+      - user
+    Course:
+      type: object
+      properties:
+        crn:
+          type: integer
+        title:
+          type: string
+          maxLength: 50
+        desc_text:
+          type: string
+          maxLength: 200
+        course_num:
+          type: integer
+        subject:
+          type: string
+          format: uri
+        instructor:
+          type: string
+          format: uri
+          nullable: true
+        credit_hours:
+          type: integer
+      required:
+      - credit_hours
+      - subject
+      - title
+    Department:
+      type: object
+      properties:
+        name:
+          type: string
+          maxLength: 50
+      required:
+      - name
+    Event:
+      type: object
+      properties:
+        id:
+          type: string
+          maxLength: 7
+        name:
+          type: string
+          maxLength: 50
+        start_time:
+          type: string
+          format: date-time
+        end_time:
+          type: string
+          format: date-time
+        creation_time:
+          type: string
+          format: date-time
+        modified_time:
+          type: string
+          format: date-time
+        location:
+          type: string
+          maxLength: 100
+        categories:
+          type: string
+          maxLength: 100
+        organizer:
+          type: string
+          maxLength: 50
+        summary:
+          type: string
+          maxLength: 50
+        description:
+          type: string
+          maxLength: 1000
+      required:
+      - categories
+      - creation_time
+      - description
+      - end_time
+      - id
+      - location
+      - modified_time
+      - name
+      - organizer
+      - start_time
+      - summary
+    HighImpactExperience:
+      type: object
+      properties:
+        name:
+          type: string
+          maxLength: 50
+        RTX_name:
+          type: string
+          maxLength: 50
+        Freshman_desc:
+          type: string
+          maxLength: 200
+        Sophomore_desc:
+          type: string
+          maxLength: 200
+        Junior_desc:
+          type: string
+          maxLength: 200
+        Senior_desc:
+          type: string
+          maxLength: 200
+        creation_date:
+          type: string
+          format: date-time
+          title: Date created
+        area:
+          type: string
+          format: uri
+          nullable: true
+      required:
+      - Freshman_desc
+      - Junior_desc
+      - RTX_name
+      - Senior_desc
+      - Sophomore_desc
+      - creation_date
+      - name
+    Major:
+      type: object
+      properties:
+        name:
+          type: string
+          maxLength: 100
+        subject:
+          type: string
+          format: uri
+      required:
+      - name
+      - subject
+    Minor:
+      type: object
+      properties:
+        name:
+          type: string
+          maxLength: 100
+        subject:
+          type: string
+          format: uri
+      required:
+      - name
+      - subject
+    PatchedAdminAssistant:
+      type: object
+      properties:
+        user:
+          type: string
+          format: uri
+        department:
+          type: string
+          format: uri
+          nullable: true
+    PatchedCourse:
+      type: object
+      properties:
+        crn:
+          type: integer
+        title:
+          type: string
+          maxLength: 50
+        desc_text:
+          type: string
+          maxLength: 200
+        course_num:
+          type: integer
+        subject:
+          type: string
+          format: uri
+        instructor:
+          type: string
+          format: uri
+          nullable: true
+        credit_hours:
+          type: integer
+    PatchedDepartment:
+      type: object
+      properties:
+        name:
+          type: string
+          maxLength: 50
+    PatchedEvent:
+      type: object
+      properties:
+        id:
+          type: string
+          maxLength: 7
+        name:
+          type: string
+          maxLength: 50
+        start_time:
+          type: string
+          format: date-time
+        end_time:
+          type: string
+          format: date-time
+        creation_time:
+          type: string
+          format: date-time
+        modified_time:
+          type: string
+          format: date-time
+        location:
+          type: string
+          maxLength: 100
+        categories:
+          type: string
+          maxLength: 100
+        organizer:
+          type: string
+          maxLength: 50
+        summary:
+          type: string
+          maxLength: 50
+        description:
+          type: string
+          maxLength: 1000
+    PatchedHighImpactExperience:
+      type: object
+      properties:
+        name:
+          type: string
+          maxLength: 50
+        RTX_name:
+          type: string
+          maxLength: 50
+        Freshman_desc:
+          type: string
+          maxLength: 200
+        Sophomore_desc:
+          type: string
+          maxLength: 200
+        Junior_desc:
+          type: string
+          maxLength: 200
+        Senior_desc:
+          type: string
+          maxLength: 200
+        creation_date:
+          type: string
+          format: date-time
+          title: Date created
+        area:
+          type: string
+          format: uri
+          nullable: true
+    PatchedMajor:
+      type: object
+      properties:
+        name:
+          type: string
+          maxLength: 100
+        subject:
+          type: string
+          format: uri
+    PatchedMinor:
+      type: object
+      properties:
+        name:
+          type: string
+          maxLength: 100
+        subject:
+          type: string
+          format: uri
+    PatchedProfessor:
+      type: object
+      properties:
+        user:
+          type: string
+          format: uri
+        department:
+          type: string
+          format: uri
+        degree_desc:
+          type: string
+          maxLength: 100
+    PatchedStudent:
+      type: object
+      properties:
+        user:
+          type: string
+          format: uri
+        major:
+          type: string
+          format: uri
+          nullable: true
+        minor:
+          type: string
+          format: uri
+          nullable: true
+        schoolyear:
+          $ref: '#/components/schemas/SchoolyearEnum'
+    Professor:
+      type: object
+      properties:
+        user:
+          type: string
+          format: uri
+        department:
+          type: string
+          format: uri
+        degree_desc:
+          type: string
+          maxLength: 100
+      required:
+      - degree_desc
+      - department
+      - user
+    SchoolyearEnum:
+      enum:
+      - FR
+      - SO
+      - JR
+      - SR
+      - GR
+      type: string
+    Student:
+      type: object
+      properties:
+        user:
+          type: string
+          format: uri
+        major:
+          type: string
+          format: uri
+          nullable: true
+        minor:
+          type: string
+          format: uri
+          nullable: true
+        schoolyear:
+          $ref: '#/components/schemas/SchoolyearEnum'
+      required:
+      - schoolyear
+      - user
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: sessionid
