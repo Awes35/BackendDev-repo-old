@@ -68,14 +68,11 @@ urlpatterns = [
     path('api/', data_views.tbl_cnts, name='api-home'), #access: localhost:8000/api/
 
     path('api/', include(router.urls)), #access: localhost:8000/api/[router.url]
-    path("schema/", SpectacularAPIView.as_view(), name="schema"),
-    path(
-        "docs/",
+    path('api/schema/', SpectacularAPIView.as_view(), name='schema'), #do not actually access
+    path('api/docs/', 
         SpectacularSwaggerView.as_view(
-            template_name="swagger-ui.html", url_name="schema"
-        ),
-        name="swagger-ui",
-    ),
+            template_name="swagger-ui.html", url_name='schema'
+        ), name="swagger-ui"),
     
     path('api/Student/register/', student_create, name='student-create'),
     path('api/Student/list/', student_list, name='student-list'),
