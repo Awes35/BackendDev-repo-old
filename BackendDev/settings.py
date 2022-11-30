@@ -107,7 +107,7 @@ DATABASES = {
     }
 }
 
-RESTRICTED_PATHS = ['admin/', 'files/']
+RESTRICTED_PATHS = ['admin/', 'files/', 'api/schema/']
 
 
 # Password validation
