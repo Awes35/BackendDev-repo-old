@@ -20,7 +20,7 @@ from data import views as data_views
 from rest_framework import routers
 from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
 
-router = routers.DefaultRouter()
+router = routers.SimpleRouter()
 #access registered ViewSets: localhost:8000/api/[NAME]
 router.register(r'Departments', data_views.DepartmentViewSet) 
 router.register(r'Major', data_views.MajorViewSet)
@@ -29,8 +29,6 @@ router.register(r'Courses', data_views.CourseViewSet)
 router.register(r'HighImpactExperiences', data_views.HighImpactExperienceViewSet) 
 router.register(r'Events', data_views.EventViewSet)
 
-
-# https://stackoverflow.com/questions/53989959/how-to-allow-post-for-update-action-in-django-rest-framework
 
 student_list = data_views.StudentViewSet.as_view({'get':'list'})
 student_create = data_views.StudentViewSet.as_view({'post':'create'})
@@ -62,12 +60,13 @@ aa_specific = data_views.AdminAssistantViewSet.as_view({ #pk
 
 urlpatterns = [
     path('admin/', admin.site.urls), #access: localhost:8000/admin/
-    path('', main_views.index, name='index'), #access: localhost:8000/
+    path('', main_views.urlpaths, name='home'), #access: localhost:8000/
+    path('home/', main_views.urlpaths, name='home'),
     path('HIEs-display/', main_views.HIEs_display, name='HIE-display'),
     path('HIEs-raw/', main_views.HIEs_raw, name='HIE-raw'),
     path('files/', main_views.files, name='files'), #access: localhost:8000/files/
+    path('api/', data_views.tbl_cnts, name='api-home'), #access: localhost:8000/api/
 
-    path('login/', main_views.auth, name='auth'),
     path('api/', include(router.urls)), #access: localhost:8000/api/[router.url]
     path("schema/", SpectacularAPIView.as_view(), name="schema"),
     path(
@@ -77,7 +76,6 @@ urlpatterns = [
         ),
         name="swagger-ui",
     ),
-    path('api/', data_views.api, name='api'), #access: localhost:8000/api/
     
     path('api/Student/register/', student_create, name='student-create'),
     path('api/Student/list/', student_list, name='student-list'),

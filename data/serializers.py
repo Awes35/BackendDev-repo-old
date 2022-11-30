@@ -81,7 +81,6 @@ class HighImpactExperienceSerializer(serializers.ModelSerializer):
 
 class EventSerializer(serializers.ModelSerializer):
     hie = serializers.SlugRelatedField(slug_field='id', queryset=HighImpactExperience.objects.all())
-    organizer = serializers.SlugRelatedField(slug_field='id', queryset=Profile.objects.all()) #-?? what model
 
     class Meta:
         model = Event
@@ -188,14 +187,6 @@ class StudentSerializer(serializers.ModelSerializer):
         
         profile = instance.prof
         user = profile.user 
-
-        # instance.major = Major.objects.get(name=validated_data.get("major", instance.major))
-        # instance.minor = Minor.objects.get(name=validated_data.get("minor", instance.minor))
-
-        # instance.major = validated_data.get('major', instance.major)
-        # instance.minor = validated_data.get('minor', instance.minor)
-        # instance.schoolyear = validated_data.get("schoolyear", instance.schoolyear)
-        # instance.save()
 
         profile.prefix = prof_data.get("prefix", profile.prefix)
         profile.suffix = prof_data.get("suffix", profile.suffix)
